@@ -1,0 +1,22 @@
+{
+  "name": "birds",
+  "version": "1.0.0",
+  "description": "This is the main repository to follow the course for 'Advanced fullstack development' - 3MCT.",
+  "scripts": {
+    "dev": "npm run dev -w pwa"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/MLoth/Birds-.git"
+  },
+  "keywords": [],
+  "author": "ML",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/MLoth/Birds-/issues"
+  },
+  "homepage": "https://github.com/MLoth/Birds-#readme",
+  "workspaces": [
+    "pwa"
+  ]
+}
