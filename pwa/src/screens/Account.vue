@@ -1,5 +1,9 @@
 <template>
-  <h1>Account</h1>
+  <h1>Hi, {{ user?.displayName }}</h1>
 </template>
 
-<script lang="ts"></script>
+<script setup lang="ts">
+import useAuthentication from '../composables/useAuthentication'
+
+const { user } = useAuthentication()
+</script>
