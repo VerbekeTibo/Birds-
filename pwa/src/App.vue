@@ -5,5 +5,3 @@
 </template>
 
 <script setup lang="ts"></script>
-
-// -> npm i @unocss/reset -w pwa
