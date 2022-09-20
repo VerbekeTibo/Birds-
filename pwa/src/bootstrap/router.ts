@@ -11,10 +11,16 @@ const routes: RouteRecordRaw[] = [
     name: 'Home',
     component: () => import('../screens/Home.vue'),
   },
+
+  {
+    path: '/:pathMatch(.*)*',
+    name: 'ClientError',
+    component: () => import('../screens/generic/ClientError.vue'),
+  },
 ]
 
 const router: Router = createRouter({
-  history: createWebHistory(), // Todo: huh??
+  history: createWebHistory(),
   routes,
 })
 
