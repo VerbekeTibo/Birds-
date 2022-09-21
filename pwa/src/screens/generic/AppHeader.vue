@@ -1,40 +1,51 @@
 <template>
-  <div class="flex items-center justify-between">
-    <router-link class="h-14 w-14" to="/">
-      <logo class="mb-6 h-14 w-14"></logo>
-    </router-link>
-    <div class="flex w-1/2 justify-between">
-      <router-link to="/">
-        <h1>Home</h1>
-      </router-link>
-      <router-link to="/birds">
-        <h1>Birds</h1>
-      </router-link>
-      <router-link to="/log">
-        <h1>Logs</h1>
-      </router-link>
-      <router-link to="/observations">
-        <h1>Observations</h1>
-      </router-link>
-      <router-link to="/Account">
-        <h1>{{ user?.displayName }}</h1>
-      </router-link>
+    <div class="flex justify-between h-24 items-center">
+        <div class="w-16 h-16 mt-4 ml-4 hover:animate-spin">
+            <router-link to="/">
+                <Logo class="w-max h-max"/>
+            </router-link>
+        </div>
+        <div class="flex justify-end w-full gap-12 mr-8 font-bold">
+            <p class="hover:text-neutral-600">
+                <router-link to="/">
+                    Home
+                </router-link>
+            </p>
+            <p class="hover:text-neutral-600">
+                <router-link to="/birds">
+                    Vogels
+                </router-link>
+            </p>
+            <p class="hover:text-neutral-600">
+                <router-link to="/log">
+                    Logboek
+                </router-link>
+            </p>
+            <p class="hover:text-neutral-600">
+                <router-link to="/observations">
+                    Observaties
+                </router-link>
+            </p>
+            <p class="hover:text-neutral-600">
+                <router-link to="/account">
+                    {{ user?.displayName }}
+                </router-link>
+            </p>
+        </div>
     </div>
-  </div>
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'vue'
-import useAuthentication from '../../composables/useAuthentication'
-import Logo from './Logo.vue'
+    import useAuthentication from '../../composables/useAuthentication';
+    import Logo from './logo.vue';
 
-export default {
-  setup() {
-    const { user } = useAuthentication()
-
-    return {
-      user,
+    export default {
+    setup() {
+        const { user } = useAuthentication();
+        return { user, Logo };
+    },
+    components: {
+        Logo
     }
-  },
 }
 </script>
