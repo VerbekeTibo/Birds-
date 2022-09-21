@@ -5,47 +5,23 @@
                 <Logo class="w-max h-max"/>
             </router-link>
         </div>
-        <div class="flex justify-end w-full gap-12 mr-8 font-bold">
-            <p class="hover:text-neutral-600">
-                <router-link to="/">
-                    Home
-                </router-link>
-            </p>
-            <p class="hover:text-neutral-600">
-                <router-link to="/birds">
-                    Birds
-                </router-link>
-            </p>
-            <p class="hover:text-neutral-600">
-                <router-link to="/log">
-                    Logs
-                </router-link>
-            </p>
-            <p class="hover:text-neutral-600">
-                <router-link to="/observations">
-                    Observations
-                </router-link>
-            </p>
-            <p class="hover:text-neutral-600">
-                <router-link to="/account">
-                    {{ user?.displayName }}
-                </router-link>
-            </p>
-        </div>
+      <AppNavigation/>
     </div>
 </template>
 
 <script lang="ts">
-    import useAuthentication from '../../composables/useAuthentication';
+
     import Logo from './logo.vue';
+    import AppNavigation from '../generic/AppNavigation.vue'
 
     export default {
     setup() {
-        const { user } = useAuthentication();
-        return { user, Logo };
+       
+        
     },
     components: {
-        Logo
+        Logo,
+        AppNavigation
     }
 }
 </script>

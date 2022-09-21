@@ -1,5 +1,5 @@
 <template>
-<app-header></app-header>
+<AppHeader/>
   <div class="grid min-h-screen place-items-center bg-neutral-50">
     <div class="w-full max-w-lg px-6">
       
@@ -13,10 +13,10 @@
 </template>
 
 <script lang="ts">
-import AppFooter from '../../screens/generic/AppFooter.vue'
+
 import AppHeader from '../../screens/generic/AppHeader.vue';
 
 export default {
-    components: { AppFooter, AppHeader }
+    components: { AppHeader }
 }
 </script>
