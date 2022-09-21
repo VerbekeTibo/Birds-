@@ -1,25 +1,25 @@
 <template>
-    <header>
-        <nav>
-            <router-link class="" to="/">
-            <Logo/></router-link>
-
-            <ul class=' flex items-center space-x-3  text-sm'>
-                <li>
-                    <router-link class="px-3 py-6" to="/"></router-link>
-                </li>
-            </ul>
-        </nav>
+    <header class="px-6 py-6">
+      <nav class="mx-auto flex max-w-6xl items-center justify-between">
+        <router-link class="" to="/">
+          <Logo />
+        </router-link>
+  
+        <AppNavigation class="hidden sm:flex" />
+      </nav>
     </header>
-</template>
-
-<script lang="ts">
-import { defineComponent } from 'vue'
-import Logo from './Logo'
-
-export default defineComponent({
-    setup() {
-        
+  </template>
+  
+  <script lang="ts">
+  import AppNavigation from './AppNavigation.vue'
+  import Logo from './Logo.vue'
+  
+  export default {
+    components: {
+      AppNavigation,
+      Logo,
     },
-})
-</script>
+  
+    setup() {},
+  }
+  </script>
