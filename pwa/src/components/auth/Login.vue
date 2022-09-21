@@ -53,6 +53,15 @@
             autocomplete="current-password"
           />
         </label>
+
+        <p class="mt-1 text-sm font-normal opacity-40 hover:opacity-100">
+          <RouterLink
+            class="rounded-md outline-none ring-neutral-300 hover:underline focus-visible:ring"
+            to="/auth/forgot-password"
+          >
+            Forgot password?
+          </RouterLink>
+        </p>
       </div>
 
       <button
@@ -82,6 +91,7 @@ import { defineComponent, reactive, ref, Ref } from 'vue'
 
 import { Loader2, X } from 'lucide-vue-next'
 
+import { useRouter } from 'vue-router'
 import useAuthentication from '../../composables/useAuthentication'
 
 export default defineComponent({
@@ -91,7 +101,9 @@ export default defineComponent({
   },
 
   setup() {
+    const { replace } = useRouter()
     const { login } = useAuthentication()
+
     const errorMessage: Ref<string> = ref('')
     const loading: Ref<boolean> = ref(false)
 
@@ -110,8 +122,7 @@ export default defineComponent({
 
       login(userInput.email, userInput.password)
         .then((u) => {
-          console.log('User logged in: ', u)
-          // push('/')
+          return replace('/')
         })
         .catch((error) => {
           errorMessage.value = error.message
