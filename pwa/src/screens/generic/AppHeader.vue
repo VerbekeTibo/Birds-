@@ -13,17 +13,17 @@
             </p>
             <p class="hover:text-neutral-600">
                 <router-link to="/birds">
-                    Vogels
+                    Birds
                 </router-link>
             </p>
             <p class="hover:text-neutral-600">
                 <router-link to="/log">
-                    Logboek
+                    Logs
                 </router-link>
             </p>
             <p class="hover:text-neutral-600">
                 <router-link to="/observations">
-                    Observaties
+                    Observations
                 </router-link>
             </p>
             <p class="hover:text-neutral-600">
