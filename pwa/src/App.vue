@@ -13,3 +13,8 @@ export default {
   },
 }
 </script>
+
+<style scoped lang="scss">
+.selector {
+}
+</style>
