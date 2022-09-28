@@ -6,25 +6,19 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.AppModule = void 0;
+exports.BirdsModule = void 0;
 const common_1 = require("@nestjs/common");
-const graphql_1 = require("@nestjs/graphql");
 const typeorm_1 = require("@nestjs/typeorm");
-const graphQLConfig_1 = require("./bootstrap/graphQLConfig");
-const typeORMConfig_1 = require("./bootstrap/typeORMConfig");
-const birds_module_1 = require("./birds/birds.module");
-let AppModule = class AppModule {
+const birds_service_1 = require("./birds.service");
+const birds_resolver_1 = require("./birds.resolver");
+const bird_entity_1 = require("./entities/bird.entity");
+let BirdsModule = class BirdsModule {
 };
-AppModule = __decorate([
+BirdsModule = __decorate([
     (0, common_1.Module)({
-        imports: [
-            typeorm_1.TypeOrmModule.forRoot(typeORMConfig_1.typeORMConfig),
-            graphql_1.GraphQLModule.forRoot(graphQLConfig_1.graphqlConfig),
-            birds_module_1.BirdsModule
-        ],
-        controllers: [],
-        providers: [],
+        imports: [typeorm_1.TypeOrmModule.forFeature([bird_entity_1.Bird])],
+        providers: [birds_resolver_1.BirdsResolver, birds_service_1.BirdsService],
     })
-], AppModule);
-exports.AppModule = AppModule;
-//# sourceMappingURL=app.module.js.map
+], BirdsModule);
+exports.BirdsModule = BirdsModule;
+//# sourceMappingURL=birds.module.js.map

@@ -1,1 +1,2 @@
-export declare const typeORMConfig: {};
+import { TypeOrmModuleOptions } from '@nestjs/typeorm';
+export declare const typeORMConfig: TypeOrmModuleOptions;

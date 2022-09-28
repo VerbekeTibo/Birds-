@@ -5,6 +5,9 @@ import { TypeOrmModule } from '@nestjs/typeorm'
 import { graphqlConfig } from './bootstrap/graphQLConfig'
 
 import { typeORMConfig } from './bootstrap/typeORMConfig'
+import { BirdsModule } from './birds/birds.module'
+import { LocationsModule } from './locations/locations.module';
+import { ObservationsModule } from './observations/observations.module';
 
 // TODO: bird module for GraphQL
 
@@ -14,8 +17,11 @@ import { typeORMConfig } from './bootstrap/typeORMConfig'
     TypeOrmModule.forRoot(typeORMConfig),
 
     GraphQLModule.forRoot<ApolloDriverConfig>(graphqlConfig),
+    BirdsModule,
+    LocationsModule,
+    ObservationsModule
   ],
   controllers: [],
   providers: [],
 })
-export class AppModule {}
+export class AppModule { }
