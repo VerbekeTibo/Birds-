@@ -2,11 +2,10 @@ import { ApolloDriverConfig } from '@nestjs/apollo'
 import { Module } from '@nestjs/common'
 import { GraphQLModule } from '@nestjs/graphql'
 import { TypeOrmModule } from '@nestjs/typeorm'
-import { graphqlConfig } from './bootstrap/graphQLConfig'
 
 import { typeORMConfig } from './bootstrap/typeORMConfig'
-
-// TODO: bird module for GraphQL
+import { graphqlConfig } from './bootstrap/graphQLConfig'
+import { BirdsModule } from './birds/birds.module'
 
 @Module({
   imports: [
@@ -14,6 +13,8 @@ import { typeORMConfig } from './bootstrap/typeORMConfig'
     TypeOrmModule.forRoot(typeORMConfig),
 
     GraphQLModule.forRoot<ApolloDriverConfig>(graphqlConfig),
+
+    BirdsModule,
   ],
   controllers: [],
   providers: [],
