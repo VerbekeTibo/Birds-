@@ -1,9 +1,8 @@
-import { ApolloDriver } from "@nestjs/apollo";
-import { GqlModuleOptions } from "@nestjs/graphql";
+import { ApolloDriver } from '@nestjs/apollo'
+import { GqlModuleOptions } from '@nestjs/graphql'
 
 export const graphqlConfig: GqlModuleOptions = {
-    driver: ApolloDriver,
-    sortSchema: true,
-    autoSchemaFile: true,
-
+  driver: ApolloDriver,
+  sortSchema: true,
+  autoSchemaFile: true,
 }

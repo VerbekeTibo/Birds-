@@ -1,17 +1,20 @@
-import { Module } from '@nestjs/common';
-import { TypeOrmModule } from '@nestjs/typeorm';
-import { typeORMConfig } from './bootstrap/typeOrmConfig';
-import { BirdsModule } from './birds/birds.module';
-import { ApolloDriverConfig } from '@nestjs/apollo';
-import { graphqlConfig } from './bootstrap/graphqlConfig';
-import { GraphQLModule } from '@nestjs/graphql';
+import { ApolloDriverConfig } from '@nestjs/apollo'
+import { Module } from '@nestjs/common'
+import { GraphQLModule } from '@nestjs/graphql'
+import { TypeOrmModule } from '@nestjs/typeorm'
+import { graphqlConfig } from './bootstrap/graphQLConfig'
 
-//TODO: bird module
+import { typeORMConfig } from './bootstrap/typeORMConfig'
 
+// TODO: bird module for GraphQL
 
 @Module({
-  imports: [TypeOrmModule.forRoot(typeORMConfig), 
-  GraphQLModule.forRoot<ApolloDriverConfig>(graphqlConfig)],
+  imports: [
+    // TODO: Enhancement? move to async provider
+    TypeOrmModule.forRoot(typeORMConfig),
+
+    GraphQLModule.forRoot<ApolloDriverConfig>(graphqlConfig),
+  ],
   controllers: [],
   providers: [],
 })
