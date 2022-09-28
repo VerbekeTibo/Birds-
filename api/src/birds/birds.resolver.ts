@@ -4,7 +4,7 @@ import { Bird } from './entities/bird.entity'
 import { BirdsService } from './birds.service'
 import { CreateBirdInput } from './dto/create-bird.input'
 import { UpdateBirdInput } from './dto/update-bird.input'
-import { DeleteResult } from 'typeorm'
+import { ClientMessage, MessageTypes } from 'src/entities/ClientMessage'
 
 @Resolver(() => Bird)
 export class BirdsResolver {
@@ -35,9 +35,22 @@ export class BirdsResolver {
   }
 
   // TODO: make better.
-  @Mutation(() => Bird)
-  removeBird(@Args('id', { type: () => String }) id: string): Promise<void> {
-    this.birdsService.remove(id)
-    return null
+  @Mutation(() => ClientMessage)
+  async removeBird(
+    @Args('id', { type: () => String }) id: string,
+  ): Promise<ClientMessage> {
+    const deleted = await this.birdsService.remove(id)
+    if (deleted.affected <= 1)
+      return {
+        type: MessageTypes.success,
+        message: 'Bird deleted',
+        statusCode: 200,
+      }
+
+    return {
+      type: MessageTypes.error,
+      message: 'Delete action went very wrong.',
+      statusCode: 400,
+    }
   }
 }

@@ -1,5 +1,7 @@
 import { Field, ID, ObjectType } from '@nestjs/graphql'
 import { ObjectId } from 'mongodb'
+import { Bird } from 'src/birds/entities/bird.entity'
+import { Location } from 'src/locations/entities/location.entity'
 import {
   Column,
   CreateDateColumn,
@@ -9,31 +11,35 @@ import {
 } from 'typeorm'
 
 @Entity()
-@ObjectType({ description: 'bird' })
-export class Bird {
-  @Field(() => ID) // GraphQL
-  @ObjectIdColumn() //typeORM // Map this field to the (generated) _id column in the database
+@ObjectType({ description: 'observations' })
+export class Observation {
+  @Field(() => ID)
+  @ObjectIdColumn()
   id: ObjectId
 
-  @Field() // GraphQL
-  @Column() // typeORM
+  @Field()
+  @Column()
   name: string
 
-  @Field()
-  @Column()
-  fullname: string
+  @Field({ nullable: true })
+  @Column({ nullable: true })
+  userId?: string
 
-  @Field()
-  @Column()
-  category: string
+  @Field({ nullable: true })
+  @Column({ nullable: true })
+  weather?: string
 
-  @Field()
-  @Column()
-  url: string
+  @Field(() => Bird)
+  bird: Bird
 
-  @Field({ defaultValue: 0 })
   @Column()
-  observations: number
+  birdId: string
+
+  @Field(() => Location)
+  location: Location
+
+  @Column()
+  locationId: string
 
   @Field({ nullable: true })
   @Column()
