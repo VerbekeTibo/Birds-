@@ -1,5 +1,5 @@
 <template>
-  <router-view></router-view>
+  <router-view class="min-h-screen bg-neutral-50"></router-view>
 </template>
 
 <script lang="ts">
@@ -13,3 +13,8 @@ export default {
   },
 }
 </script>
+
+<style scoped lang="scss">
+.selector {
+}
+</style>
