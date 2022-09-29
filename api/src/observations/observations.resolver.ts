@@ -30,6 +30,7 @@ export class ObservationsResolver {
 
   @ResolveField()
   location(@Parent() o: Observation): Promise<Location> {
+    //@ts-ignore
     return this.locationService.findOne(o.locationId)
   }
 
