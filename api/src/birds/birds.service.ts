@@ -1,11 +1,11 @@
 import { Injectable } from '@nestjs/common'
-import { InjectRepository } from '@nestjs/typeorm'
 import { DeleteResult, Repository } from 'typeorm'
 import { ObjectId } from 'mongodb'
 
 import { CreateBirdInput } from './dto/create-bird.input'
 import { UpdateBirdInput } from './dto/update-bird.input'
 import { Bird } from './entities/bird.entity'
+import { InjectRepository } from '@nestjs/typeorm'
 
 @Injectable()
 export class BirdsService {
