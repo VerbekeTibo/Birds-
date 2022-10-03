@@ -6,7 +6,7 @@ export class CreateLocationInput {
   @Field()
   name: string
 
-  @Field()
+  @Field(() => Observation)
   observations: Observation[]
 
   @Field()
