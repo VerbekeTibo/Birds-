@@ -17,7 +17,9 @@ import { Location } from 'src/locations/entities/location.entity'
 import {
   ClientMessage,
   MessageTypes,
+
 } from '../bootstrap/entities/ClientMessage'
+
 
 @Resolver(() => Observation)
 export class ObservationsResolver {
