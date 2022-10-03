@@ -14,10 +14,10 @@ var __param = (this && this.__param) || function (paramIndex, decorator) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.BirdsService = void 0;
 const common_1 = require("@nestjs/common");
-const typeorm_1 = require("@nestjs/typeorm");
+const typeorm_1 = require("typeorm");
 const mongodb_1 = require("mongodb");
-const typeorm_2 = require("typeorm");
 const bird_entity_1 = require("./entities/bird.entity");
+const typeorm_2 = require("@nestjs/typeorm");
 let BirdsService = class BirdsService {
     constructor(birdRepository) {
         this.birdRepository = birdRepository;
@@ -27,19 +27,16 @@ let BirdsService = class BirdsService {
         b.name = createBirdInput.name;
         b.fullname = createBirdInput.fullname;
         b.category = createBirdInput.category;
-        b.description = createBirdInput.description;
         b.url = createBirdInput.url;
         b.observations = createBirdInput.observations;
-        return this.birdRepository.save(createBirdInput);
+        b.description = createBirdInput.description;
+        return this.birdRepository.save(b);
     }
     findAll() {
-        console.log(`This action returns all birds`);
         return this.birdRepository.find();
     }
     findOne(id) {
-        console.log(`This action returns a #${id} bird`);
-        const parsedId = new Object(id);
-        return this.birdsRepository.findOneBy({ _id: new mongodb_1.ObjectId(id) });
+        return this.birdRepository.findOne(new mongodb_1.ObjectId(id));
     }
     update(updateBirdInput) {
         const update = new bird_entity_1.Bird();
@@ -53,13 +50,13 @@ let BirdsService = class BirdsService {
         return this.birdRepository.save(update);
     }
     remove(id) {
-        return this.birdRepository.delete({ _id: new mongodb_1.ObjectId(id) });
+        return this.birdRepository.delete(new mongodb_1.ObjectId(id));
     }
 };
 BirdsService = __decorate([
     (0, common_1.Injectable)(),
-    __param(0, (0, typeorm_1.InjectRepository)(bird_entity_1.Bird)),
-    __metadata("design:paramtypes", [typeorm_2.Repository])
+    __param(0, (0, typeorm_2.InjectRepository)(bird_entity_1.Bird)),
+    __metadata("design:paramtypes", [typeorm_1.Repository])
 ], BirdsService);
 exports.BirdsService = BirdsService;
 //# sourceMappingURL=birds.service.js.map

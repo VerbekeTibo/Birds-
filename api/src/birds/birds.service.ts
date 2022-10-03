@@ -30,6 +30,7 @@ export class BirdsService {
   }
 
   findOne(id: string): Promise<Bird> {
+   //@ts-ignore
     return this.birdRepository.findOne(new ObjectId(id))
   }
 
@@ -46,6 +47,7 @@ export class BirdsService {
   }
 
   remove(id: string): Promise<DeleteResult> {
+     //@ts-ignore
     return this.birdRepository.delete(new ObjectId(id))
   }
 }

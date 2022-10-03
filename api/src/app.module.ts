@@ -8,8 +8,9 @@ import { typeORMConfig } from './bootstrap/typeORMConfig'
 import { BirdsModule } from './birds/birds.module'
 import { LocationsModule } from './locations/locations.module';
 import { ObservationsModule } from './observations/observations.module';
+import { DatabaseSeedModule } from './seed/seed.module'
 
-// TODO: bird module for GraphQL
+
 
 @Module({
   imports: [
@@ -19,7 +20,8 @@ import { ObservationsModule } from './observations/observations.module';
     GraphQLModule.forRoot<ApolloDriverConfig>(graphqlConfig),
     BirdsModule,
     LocationsModule,
-    ObservationsModule
+    ObservationsModule,
+    DatabaseSeedModule,
   ],
   controllers: [],
   providers: [],
