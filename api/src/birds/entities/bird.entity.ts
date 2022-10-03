@@ -13,7 +13,7 @@ export class Bird {
   @Field(() => ID) // GraphQL
 
   @ObjectIdColumn()//typeORM // Map this field to the (generated) _id column in the database
-  id: ObjectId;
+  id: string;
 
   @Field()// GraphQL
   @Column()//typeORM

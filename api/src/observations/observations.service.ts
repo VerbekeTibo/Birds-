@@ -31,6 +31,7 @@ export class ObservationsService {
   }
 
   findOne(id: string): Promise<Observation> {
+    //@ts-ignore
     return this.observationRepository.findOne(new ObjectId(id))
   }
 
@@ -49,6 +50,7 @@ export class ObservationsService {
   }
 
   remove(id: string) {
+    //@ts-ignore
     return this.observationRepository.delete(new ObjectId(id))
   }
 }

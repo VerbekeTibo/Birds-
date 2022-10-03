@@ -12,8 +12,8 @@ import { Location } from './entities/location.entity'
 import { CreateLocationInput } from './dto/create-location.input'
 import { UpdateLocationInput } from './dto/update-location.input'
 import { ClientMessage, MessageTypes } from '../bootstrap/entities/ClientMessages'
-import { ObservationsService } from 'src/observations/observations.service'
-import { Observation } from 'src/observations/entities/observation.entity'
+import { ObservationsService } from '../observations/observations.service'
+import { Observation } from '../observations/entities/observation.entity'
 
 @Resolver(() => Location)
 export class LocationsResolver {

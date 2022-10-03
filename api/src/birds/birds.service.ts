@@ -30,12 +30,13 @@ export class BirdsService {
   }
 
   findOne(id: string): Promise<Bird> {
+    //@ts-ignore
     return this.birdRepository.findOne(new ObjectId(id))
   }
 
   update(updateBirdInput: UpdateBirdInput) {
     const update = new Bird()
-    update.id = new ObjectId(updateBirdInput.id)
+    update.id = updateBirdInput.id
     update.name = updateBirdInput.name
     update.fullname = updateBirdInput.fullname
     update.category = updateBirdInput.category
@@ -46,6 +47,7 @@ export class BirdsService {
   }
 
   remove(id: string): Promise<DeleteResult> {
+    //@ts-ignore
     return this.birdRepository.delete(new ObjectId(id))
   }
 }
