@@ -3,7 +3,6 @@ import {
   Query,
   Mutation,
   Args,
-  Int,
   ResolveField,
   Parent,
 } from '@nestjs/graphql'
@@ -14,6 +13,8 @@ import { UpdateObservationInput } from './dto/update-observation.input'
 import { BirdsService } from 'src/birds/birds.service'
 import { LocationsService } from 'src/locations/locations.service'
 import { Bird } from 'src/birds/entities/bird.entity'
+import { Location } from 'src/locations/entities/location.entity'
+import { ClientMessage, MessageTypes } from 'src/entities/ClientMessage'
 
 @Resolver(() => Observation)
 export class ObservationsResolver {
@@ -47,7 +48,7 @@ export class ObservationsResolver {
   }
 
   @Query(() => Observation, { name: 'observation' })
-  findOne(@Args('id', { type: () => Int }) id: number) {
+  findOne(@Args('id', { type: () => String }) id: string) {
     return this.observationsService.findOne(id)
   }
 
@@ -56,14 +57,25 @@ export class ObservationsResolver {
     @Args('updateObservationInput')
     updateObservationInput: UpdateObservationInput,
   ) {
-    return this.observationsService.update(
-      updateObservationInput.id,
-      updateObservationInput,
-    )
+    return this.observationsService.update(updateObservationInput)
   }
 
   @Mutation(() => Observation)
-  removeObservation(@Args('id', { type: () => Int }) id: number) {
-    return this.observationsService.remove(id)
+  async removeObservation(
+    @Args('id', { type: () => String }) id: string,
+  ): Promise<ClientMessage> {
+    const deleted = await this.observationsService.remove(id)
+    if (deleted.affected <= 1)
+      return {
+        type: MessageTypes.success,
+        message: 'Bird deleted',
+        statusCode: 200,
+      }
+
+    return {
+      type: MessageTypes.error,
+      message: 'Delete action went very wrong.',
+      statusCode: 400,
+    }
   }
 }

@@ -1,7 +1,16 @@
-import { InputType, Int, Field } from '@nestjs/graphql';
+import { InputType, Field } from '@nestjs/graphql'
+import { Observation } from 'src/observations/entities/observation.entity'
 
 @InputType()
 export class CreateLocationInput {
-  @Field(() => Int, { description: 'Example field (placeholder)' })
-  exampleField: number;
+  @Field()
+  name: string
+
+  // @Field(() => Observation)
+  // observations: Observation[]
+  @Field()
+  observationsId: string
+
+  @Field()
+  location: string
 }
