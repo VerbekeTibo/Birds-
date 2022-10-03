@@ -26,6 +26,7 @@ export class LocationsService {
   }
 
   findOne(id: string): Promise<Location> {
+    //@ts-ignore
     return this.locationRepository.findOne(new ObjectId(id))
   }
 
@@ -39,6 +40,7 @@ export class LocationsService {
   }
 
   remove(id: string): Promise<DeleteResult> {
+    //@ts-ignore
     return this.locationRepository.delete(new ObjectId(id))
   }
 }
