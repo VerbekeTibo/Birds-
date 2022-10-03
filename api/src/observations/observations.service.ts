@@ -18,9 +18,9 @@ export class ObservationsService {
     o.name = createObservationInput.name
     o.description = createObservationInput.description
     o.weather = createObservationInput.weather
-    o.bird = createObservationInput.bird
+    // o.birds = createObservationInput.bird
     o.birdId = createObservationInput.birdId
-    o.location = createObservationInput.location
+    // o.location = createObservationInput.location
     o.locationId = createObservationInput.locationId
     o.active = createObservationInput.active
     return this.observationRepository.save(o)
@@ -40,13 +40,12 @@ export class ObservationsService {
     update.name = updateObservationInput.name
     update.description = updateObservationInput.description
     update.weather = updateObservationInput.weather
-    update.bird = updateObservationInput.bird
+    // update.birds = updateObservationInput.bird
     update.birdId = updateObservationInput.birdId
-    update.location = updateObservationInput.location
+    // update.location = updateObservationInput.location
     update.locationId = updateObservationInput.locationId
     update.active = updateObservationInput.active
     return this.observationRepository.save(update)
-    // return `This action updates a #${id} observation`
   }
 
   remove(id: string) {

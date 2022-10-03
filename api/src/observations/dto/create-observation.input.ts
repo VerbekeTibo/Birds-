@@ -13,14 +13,14 @@ export class CreateObservationInput {
   @Field({ nullable: true })
   weather?: string
 
-  @Field(() => Bird)
-  bird: Bird
+  // @Field(() => Bird)
+  // bird: Bird
 
   @Field()
   birdId: string
 
-  @Field(() => Location)
-  location: Location
+  // @Field(() => Location)
+  // location: Location
 
   @Field()
   locationId: string
