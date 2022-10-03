@@ -2,6 +2,7 @@
 import { Bird } from "../../entities/bird.entity"
 import { CreateBirdInput } from "../../../birds/dto/create-bird.input"
 import { birdProviders } from "../bird.provider"
+import { ObjectId } from "mongodb"
 
 
 export const createBirdInputStub = (): CreateBirdInput => {
@@ -17,7 +18,7 @@ export const createBirdInputStub = (): CreateBirdInput => {
 
 export const createBird = () : Bird =>{
     const bird = new Bird()
-    bird.id ='abc123'
+    bird.id = '633ad69e196de0561cb0347a'
     bird.name = 'bird'
     bird.fullname = 'bird full'
     bird.category = 'cat 1'
