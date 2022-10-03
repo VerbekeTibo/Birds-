@@ -14,7 +14,10 @@ import { BirdsService } from 'src/birds/birds.service'
 import { LocationsService } from 'src/locations/locations.service'
 import { Bird } from 'src/birds/entities/bird.entity'
 import { Location } from 'src/locations/entities/location.entity'
-import { ClientMessage, MessageTypes } from 'src/entities/ClientMessage'
+import {
+  ClientMessage,
+  MessageTypes,
+} from '../bootstrap/entities/ClientMessage'
 
 @Resolver(() => Observation)
 export class ObservationsResolver {
