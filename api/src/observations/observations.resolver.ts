@@ -12,14 +12,12 @@ import { CreateObservationInput } from './dto/create-observation.input'
 import { UpdateObservationInput } from './dto/update-observation.input'
 import { BirdsService } from 'src/birds/birds.service'
 import { LocationsService } from 'src/locations/locations.service'
-import { Bird } from 'src/birds/entities/bird.entity'
+import { Bird } from '../birds/entities/bird.entity'
 import { Location } from 'src/locations/entities/location.entity'
 import {
   ClientMessage,
   MessageTypes,
-
 } from '../bootstrap/entities/ClientMessage'
-
 
 @Resolver(() => Observation)
 export class ObservationsResolver {
