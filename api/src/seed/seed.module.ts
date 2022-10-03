@@ -1,5 +1,6 @@
 import { Module } from '@nestjs/common'
 import { TypeOrmModule } from '@nestjs/typeorm'
+
 import { Bird } from '../birds/entities/bird.entity'
 import { DatabaseSeedService } from './seed.service'
 import { DatabaseSeedCommand } from './seed.command'
