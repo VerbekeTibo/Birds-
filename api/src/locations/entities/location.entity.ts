@@ -3,6 +3,7 @@ import { Observation } from 'src/observations/entities/observation.entity'
 import {
   Column,
   CreateDateColumn,
+  ObjectID,
   ObjectIdColumn,
   UpdateDateColumn,
 } from 'typeorm'
@@ -11,7 +12,7 @@ import {
 export class Location {
   @Field(() => ID)
   @ObjectIdColumn()
-  id: string
+  id: ObjectID
 
   @Field()
   @Column()
