@@ -1,10 +1,6 @@
 <template>
   <route-holder title="Add observation">
     <form @submit.prevent="submitForm">
-      <header>
-        <h2 class="mb-6 text-3xl">Add observation</h2>
-      </header>
-
       <div
         v-if="errorMessage"
         class="mb-3 flex items-center justify-between rounded-md bg-red-100 px-3 py-1"
@@ -88,8 +84,40 @@
       </div>
 
       <!-- DESCRIPTION -->
+      <div class="mt-3">
+        <label
+          class="mb-1 block text-neutral-500 focus-within:text-neutral-900"
+          for="description"
+        >
+          <span class="mb-2 block">Description</span>
+
+          <textarea
+            class="w-full rounded-md border border-neutral-200 px-3 py-1 text-neutral-800 outline-none ring-neutral-300 focus-visible:ring"
+            v-model="observationInput.description"
+            name="description"
+            id="description"
+            cols="30"
+          ></textarea>
+        </label>
+      </div>
 
       <!-- WEATHER -->
+      <div>
+        <label
+          class="mb-1 block text-neutral-500 focus-within:text-neutral-900"
+          for="weather"
+        >
+          <span class="mb-2 block">Weather</span>
+
+          <input
+            v-model="observationInput.weather"
+            id="weather"
+            class="w-full rounded-md border border-neutral-200 px-3 py-1 text-neutral-800 outline-none ring-neutral-300 focus-visible:ring"
+            type="text"
+            name="weather"
+          />
+        </label>
+      </div>
 
       <button
         class="mt-6 flex w-full items-center justify-center rounded-md bg-neutral-700 py-2 px-3 text-white outline-none ring-neutral-300 hover:bg-neutral-900 focus-visible:ring"
@@ -108,7 +136,7 @@
 import { reactive, ref, Ref } from 'vue'
 import gql from 'graphql-tag'
 import { useRouter } from 'vue-router'
-import { useQuery } from '@vue/apollo-composable'
+import { useQuery, useMutation } from '@vue/apollo-composable'
 import { Loader2, X } from 'lucide-vue-next'
 
 import RouteHolder from '../../components/holders/RouteHolder.vue'
@@ -132,42 +160,55 @@ export default {
     // Add styling!
     // TODO: validation...
 
-    const BIRDS = gql`
-      query birds {
+    const INSERT_DATA = gql`
+      query insertData {
         birds {
+          id
+          name
+        }
+
+        locations {
           id
           name
         }
       }
     `
-    const { result, loading, error } = useQuery(BIRDS)
-
-    const observationInput = reactive({
-      name: '',
-      birdId: 'Pick a bird species',
-      locationId: 'Pick a location',
-      description: '',
-      weather: '',
-      userId: user.value.uid,
-    })
 
     const ADD_OBSERVATION = gql`
-      mutation createObservation {
-        createObservation(
-          createObservationInput: {
-            active: true
-            birdId: ""
-            description: ""
-            locationId: ""
-            name: ""
-            userId: ""
-            weather: ""
-          }
-        ) {
+      mutation createObservation(
+        $createObservationInput: CreateObservationInput!
+      ) {
+        createObservation(createObservationInput: $createObservationInput) {
           id
+          name
         }
       }
     `
+
+    const observationInput = reactive({
+      name: 'Beautiful bird',
+      birdId: 'Buizerd',
+      locationId: 'Magdalenapark',
+      description:
+        'A beautiful common buzzard (buteo buteo) flying over Kortrijk.',
+      weather: 'Overcast, clouded',
+      userId: user.value.uid,
+    })
+
+    const { result, loading, error } = useQuery(INSERT_DATA)
+    const { mutate: addObservation } = useMutation(ADD_OBSERVATION, {
+      variables: {
+        $input: { ...observationInput },
+      },
+    })
+
+    const submitForm = async () => {
+      const observation = await addObservation().catch((err) => {
+        errorMessage.value = err.message
+      })
+
+      console.log(observation)
+    }
 
     return {
       observationInput,
@@ -175,6 +216,7 @@ export default {
       loading,
       error,
       errorMessage,
+      submitForm,
     }
   },
 }

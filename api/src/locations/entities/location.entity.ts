@@ -25,7 +25,7 @@ export class Location {
   // @Column()
   // observationsId: string
 
-  @Field(() => [Observation])
+  @Field(() => [Observation], { nullable: 'itemsAndList' })
   @Column({ nullable: true })
   observations: Observation[]
 
