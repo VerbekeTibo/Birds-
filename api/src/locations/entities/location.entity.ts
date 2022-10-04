@@ -1,14 +1,17 @@
-import { ObjectType, Field, Int, ID } from '@nestjs/graphql'
-import { Observation } from 'src/observations/entities/observation.entity'
+import { ObjectType, Field, ID } from '@nestjs/graphql'
 import { ObjectId } from 'mongodb'
 import {
   Column,
   CreateDateColumn,
+  Entity,
   ObjectIdColumn,
   UpdateDateColumn,
 } from 'typeorm'
 
-@ObjectType()
+import { Observation } from 'src/observations/entities/observation.entity'
+
+@Entity()
+@ObjectType({ description: 'location' })
 export class Location {
   @Field(() => ID)
   @ObjectIdColumn()
@@ -18,9 +21,9 @@ export class Location {
   @Column()
   name: string
 
-  @Field()
-  @Column()
-  observationsId: string
+  // @Field()
+  // @Column()
+  // observationsId: string
 
   @Field(() => [Observation])
   @Column({ nullable: true })
