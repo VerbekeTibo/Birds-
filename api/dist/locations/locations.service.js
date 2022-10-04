@@ -25,7 +25,6 @@ let LocationsService = class LocationsService {
     create(createLocationInput) {
         const l = new location_entity_1.Location();
         l.name = createLocationInput.name;
-        l.observationsId = createLocationInput.observationsId;
         l.location = createLocationInput.location;
         return this.locationRepository.save(l);
     }
@@ -39,7 +38,6 @@ let LocationsService = class LocationsService {
         const update = new location_entity_1.Location();
         update.id = new mongodb_1.ObjectId(updateLocationInput.id);
         update.name = updateLocationInput.name;
-        update.observationsId = updateLocationInput.observationsId;
         update.location = updateLocationInput.location;
         return this.locationRepository.save(update);
     }

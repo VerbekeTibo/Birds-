@@ -20,10 +20,6 @@ __decorate([
 __decorate([
     (0, graphql_1.Field)(),
     __metadata("design:type", String)
-], CreateLocationInput.prototype, "observationsId", void 0);
-__decorate([
-    (0, graphql_1.Field)(),
-    __metadata("design:type", String)
 ], CreateLocationInput.prototype, "location", void 0);
 CreateLocationInput = __decorate([
     (0, graphql_1.InputType)()

@@ -1,7 +1,8 @@
 <template>
+  
   <div class="px-6">
     <div class="mx-auto max-w-6xl">
-      <h1 class="font-theme text-3xl font-bold">Birds</h1>
+      <route-holder title="Birds"></route-holder>
 
       <div
         class="grid animate-pulse gap-12 sm:grid-cols-2 md:grid-cols-4 lg:grid-cols-5"
@@ -37,8 +38,12 @@
 <script lang="ts">
 import gql from 'graphql-tag'
 import { useQuery } from '@vue/apollo-composable'
-
+import RouteHolder from '../../components/holders/RouteHolder.vue'
 export default {
+
+  components:{
+    RouteHolder,
+  },
   setup() {
     const BIRDS = gql`
       query birds {

@@ -16,7 +16,7 @@ export class LocationsService {
   create(createLocationInput: CreateLocationInput): Promise<Location> {
     const l = new Location()
     l.name = createLocationInput.name
-    l.observationsId = createLocationInput.observationsId
+    // l.observationsId = createLocationInput.observationsId
     l.location = createLocationInput.location
     return this.locationRepository.save(l)
   }
@@ -34,7 +34,7 @@ export class LocationsService {
     const update = new Location()
     update.id = new ObjectId(updateLocationInput.id)
     update.name = updateLocationInput.name
-    update.observationsId = updateLocationInput.observationsId
+    // update.observationsId = updateLocationInput.observationsId
     update.location = updateLocationInput.location
     return this.locationRepository.save(update)
   }

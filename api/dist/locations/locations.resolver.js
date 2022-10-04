@@ -25,9 +25,6 @@ let LocationsResolver = class LocationsResolver {
         this.locationsService = locationsService;
         this.observationsService = observationsService;
     }
-    observations(l) {
-        return this.observationsService.findOne(l.observationsId);
-    }
     createLocation(createLocationInput) {
         return this.locationsService.create(createLocationInput);
     }
@@ -55,13 +52,6 @@ let LocationsResolver = class LocationsResolver {
         };
     }
 };
-__decorate([
-    (0, graphql_1.ResolveField)(),
-    __param(0, (0, graphql_1.Parent)()),
-    __metadata("design:type", Function),
-    __metadata("design:paramtypes", [location_entity_1.Location]),
-    __metadata("design:returntype", Promise)
-], LocationsResolver.prototype, "observations", null);
 __decorate([
     (0, graphql_1.Mutation)(() => location_entity_1.Location),
     __param(0, (0, graphql_1.Args)('createLocationInput')),

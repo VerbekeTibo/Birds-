@@ -11,9 +11,9 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.Location = void 0;
 const graphql_1 = require("@nestjs/graphql");
-const observation_entity_1 = require("../../observations/entities/observation.entity");
 const mongodb_1 = require("mongodb");
 const typeorm_1 = require("typeorm");
+const observation_entity_1 = require("../../observations/entities/observation.entity");
 let Location = class Location {
 };
 __decorate([
@@ -27,12 +27,7 @@ __decorate([
     __metadata("design:type", String)
 ], Location.prototype, "name", void 0);
 __decorate([
-    (0, graphql_1.Field)(),
-    (0, typeorm_1.Column)(),
-    __metadata("design:type", String)
-], Location.prototype, "observationsId", void 0);
-__decorate([
-    (0, graphql_1.Field)(() => [observation_entity_1.Observation]),
+    (0, graphql_1.Field)(() => [observation_entity_1.Observation], { nullable: 'itemsAndList' }),
     (0, typeorm_1.Column)({ nullable: true }),
     __metadata("design:type", Array)
 ], Location.prototype, "observations", void 0);
@@ -52,7 +47,8 @@ __decorate([
     __metadata("design:type", Date)
 ], Location.prototype, "updatedAt", void 0);
 Location = __decorate([
-    (0, graphql_1.ObjectType)()
+    (0, typeorm_1.Entity)(),
+    (0, graphql_1.ObjectType)({ description: 'location' })
 ], Location);
 exports.Location = Location;
 //# sourceMappingURL=location.entity.js.map

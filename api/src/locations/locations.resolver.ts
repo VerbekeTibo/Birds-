@@ -16,7 +16,7 @@ import { Observation } from '../observations/entities/observation.entity'
 import {
   ClientMessage,
   MessageTypes,
-} from '../bootstrap/entities/ClientMessage'
+} from 'src/bootstrap/entities/ClientMessage'
 
 @Resolver(() => Location)
 export class LocationsResolver {
@@ -25,10 +25,10 @@ export class LocationsResolver {
     private readonly observationsService: ObservationsService,
   ) {}
 
-  @ResolveField()
-  observations(@Parent() l: Location): Promise<Observation> {
-    return this.observationsService.findOne(l.observationsId)
-  }
+  // @ResolveField()
+  // observations(@Parent() l: Location): Promise<Observation> {
+  //   return this.observationsService.findOne(l.observationsId)
+  // }
 
   @Mutation(() => Location)
   createLocation(
