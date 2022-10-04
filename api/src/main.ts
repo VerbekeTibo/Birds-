@@ -6,7 +6,10 @@ async function bootstrap() {
   const port: number = +process.env.PORT || 3003
 
   await app.listen(port)
-  console.info(`👋\nWelcome to the server.\nVisit http://localhost:${port}/graphql`)
+
+  console.info(
+    `👋\nWelcome to the server.\nVisit ${await app.getUrl()}/graphql`,
+  )
 }
 
 bootstrap()

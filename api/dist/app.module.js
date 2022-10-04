@@ -8,22 +8,23 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.AppModule = void 0;
 const common_1 = require("@nestjs/common");
-const graphql_1 = require("@nestjs/graphql");
-const typeorm_1 = require("@nestjs/typeorm");
-const graphQLConfig_1 = require("./bootstrap/graphQLConfig");
-const typeORMConfig_1 = require("./bootstrap/typeORMConfig");
 const birds_module_1 = require("./birds/birds.module");
+const observations_module_1 = require("./observations/observations.module");
+const locations_module_1 = require("./locations/locations.module");
+const bootstrap_module_1 = require("./bootstrap/bootstrap.module");
+const seed_module_1 = require("./seed/seed.module");
 let AppModule = class AppModule {
 };
 AppModule = __decorate([
     (0, common_1.Module)({
         imports: [
-            typeorm_1.TypeOrmModule.forRoot(typeORMConfig_1.typeORMConfig),
-            graphql_1.GraphQLModule.forRoot(graphQLConfig_1.graphqlConfig),
-            birds_module_1.BirdsModule
+            bootstrap_module_1.BootstrapModule,
+            birds_module_1.BirdsModule,
+            observations_module_1.ObservationsModule,
+            locations_module_1.LocationsModule,
+            seed_module_1.DatabaseSeedModule,
         ],
-        controllers: [],
-        providers: [],
+        exports: [],
     })
 ], AppModule);
 exports.AppModule = AppModule;

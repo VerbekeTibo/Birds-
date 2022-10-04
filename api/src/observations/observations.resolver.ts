@@ -10,11 +10,14 @@ import { ObservationsService } from './observations.service'
 import { Observation } from './entities/observation.entity'
 import { CreateObservationInput } from './dto/create-observation.input'
 import { UpdateObservationInput } from './dto/update-observation.input'
-import { BirdsService } from '../birds/birds.service'
-import { LocationsService } from '../locations/locations.service'
+import { BirdsService } from 'src/birds/birds.service'
+import { LocationsService } from 'src/locations/locations.service'
 import { Bird } from '../birds/entities/bird.entity'
 import { Location } from '../locations/entities/location.entity'
-import { ClientMessage, MessageTypes } from '../bootstrap/entities/ClientMessages'
+import {
+  ClientMessage,
+  MessageTypes,
+} from '../bootstrap/entities/ClientMessage'
 
 @Resolver(() => Observation)
 export class ObservationsResolver {
@@ -31,7 +34,6 @@ export class ObservationsResolver {
 
   @ResolveField()
   location(@Parent() o: Observation): Promise<Location> {
-    //@ts-ignore
     return this.locationService.findOne(o.locationId)
   }
 

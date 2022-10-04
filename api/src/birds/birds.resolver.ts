@@ -7,8 +7,7 @@ import { UpdateBirdInput } from './dto/update-bird.input'
 import {
   ClientMessage,
   MessageTypes,
-} from '../bootstrap/entities/ClientMessages'
-import { ObjectId } from 'mongodb'
+} from '../bootstrap/entities/ClientMessage'
 
 @Resolver(() => Bird)
 export class BirdsResolver {
@@ -27,7 +26,7 @@ export class BirdsResolver {
   }
 
   @Query(() => Bird, { name: 'bird' })
-  findOne(@Args('id', { type: () => ObjectId }) id: ObjectId): Promise<Bird> {
+  findOne(@Args('id', { type: () => String }) id: string): Promise<Bird> {
     return this.birdsService.findOne(id)
   }
 
@@ -38,10 +37,13 @@ export class BirdsResolver {
     return this.birdsService.update(updateBirdInput)
   }
 
-  // TODO: make better.
+  // TODO: birdsByLocation
+
+  // TODO: birdsByCategory
+
   @Mutation(() => ClientMessage)
   async removeBird(
-    @Args('id', { type: () => ObjectId }) id: ObjectId,
+    @Args('id', { type: () => String }) id: string,
   ): Promise<ClientMessage> {
     const deleted = await this.birdsService.remove(id)
     if (deleted.affected <= 1)

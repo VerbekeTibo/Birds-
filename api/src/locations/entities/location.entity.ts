@@ -1,5 +1,5 @@
 import { ObjectType, Field, Int, ID } from '@nestjs/graphql'
-import { Observation } from '../../observations/entities/observation.entity'
+import { Observation } from 'src/observations/entities/observation.entity'
 import { ObjectId } from 'mongodb'
 import {
   Column,

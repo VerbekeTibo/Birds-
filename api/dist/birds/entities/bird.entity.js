@@ -52,6 +52,11 @@ __decorate([
 ], Bird.prototype, "description", void 0);
 __decorate([
     (0, graphql_1.Field)({ nullable: true }),
+    (0, typeorm_1.Column)(),
+    __metadata("design:type", Boolean)
+], Bird.prototype, "active", void 0);
+__decorate([
+    (0, graphql_1.Field)({ nullable: true }),
     (0, typeorm_1.CreateDateColumn)({ type: 'timestamp', nullable: true }),
     __metadata("design:type", Date)
 ], Bird.prototype, "createdAt", void 0);

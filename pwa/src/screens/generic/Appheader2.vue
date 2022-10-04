@@ -11,7 +11,7 @@
   </template>
   
   <script lang="ts">
-  import AppNavigation from './AppNavigation.vue'
+  import AppNavigation from './AppNavigation2.vue'
   import Logo from './Logo.vue'
   
   export default {

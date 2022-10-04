@@ -1,9 +1,8 @@
-import { CreateBirdInput } from './create-bird.input';
-import { InputType, Field, PartialType } from '@nestjs/graphql';
-import { ObjectId } from 'mongodb';
+import { CreateBirdInput } from './create-bird.input'
+import { InputType, Field, PartialType } from '@nestjs/graphql'
 
 @InputType()
 export class UpdateBirdInput extends PartialType(CreateBirdInput) {
-  @Field() // GraphQL
-  id: ObjectId;
-  }
+  @Field()
+  id!: string
+}

@@ -30,7 +30,7 @@ export class BirdsService {
     return this.birdRepository.find()
   }
 
-  findOne(id: ObjectId): Promise<Bird> {
+  findOne(id: string): Promise<Bird> {
     //@ts-ignore
     return this.birdRepository.findOne(new ObjectId(id))
   }
@@ -47,7 +47,7 @@ export class BirdsService {
     return this.birdRepository.save(update) // Save gives us an advantage!
   }
 
-  remove(id: ObjectId): Promise<DeleteResult> {
+  remove(id: string): Promise<DeleteResult> {
     //@ts-ignore
     return this.birdRepository.delete(new ObjectId(id))
   }

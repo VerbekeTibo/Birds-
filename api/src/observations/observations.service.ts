@@ -12,16 +12,14 @@ export class ObservationsService {
     @InjectRepository(Observation)
     private readonly observationRepository: Repository<Observation>,
   ) {}
+
   create(createObservationInput: CreateObservationInput): Promise<Observation> {
-    // return 'This action adds a new observation'
     const o = new Observation()
     o.name = createObservationInput.name
     o.description = createObservationInput.description
     o.weather = createObservationInput.weather
-    // o.birds = createObservationInput.bird
-    o.birdId = createObservationInput.birdId
-    // o.location = createObservationInput.location
-    o.locationId = createObservationInput.locationId
+    o.birdId = createObservationInput.birdId // TODO: the bird has been spotted!
+    o.locationId = createObservationInput.locationId // TODO: something has been spotted on this location!
     o.active = createObservationInput.active
     return this.observationRepository.save(o)
   }
@@ -37,13 +35,12 @@ export class ObservationsService {
 
   update(updateObservationInput: UpdateObservationInput) {
     const update = new Observation()
+    //@ts-ignore
     update.id = updateObservationInput.id
     update.name = updateObservationInput.name
     update.description = updateObservationInput.description
     update.weather = updateObservationInput.weather
-    // update.birds = updateObservationInput.bird
     update.birdId = updateObservationInput.birdId
-    // update.location = updateObservationInput.location
     update.locationId = updateObservationInput.locationId
     update.active = updateObservationInput.active
     return this.observationRepository.save(update)

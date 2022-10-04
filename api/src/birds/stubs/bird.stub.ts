@@ -1,5 +1,5 @@
-import { CreateBirdInput } from '../../dto/create-bird.input'
-import { Bird } from '../../entities/bird.entity'
+import { CreateBirdInput } from '../dto/create-bird.input'
+import { Bird } from '../entities/bird.entity'
 import { ObjectId } from 'mongodb'
 export const createBirdInputStub = (): CreateBirdInput => {
   const b = new CreateBirdInput()
