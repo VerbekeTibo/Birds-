@@ -23,7 +23,7 @@
           :src="`./birds/${b.name}.webp`"
           :alt="`Drawing of a ${b.name}`"
         />
-        <h2 class="font-theme text-2xl font-bold">{{ b.name }}</h2>
+        <h2 class="font-theme text-2xl font-light">{{ b.name }}</h2>
         <p class="text-sm">{{ b.category }}</p>
       </RouterLink>
     </div>

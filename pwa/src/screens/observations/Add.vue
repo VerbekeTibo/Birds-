@@ -1,6 +1,6 @@
 <template>
   <route-holder title="Add observation">
-    <form class="mt-6" @submit.prevent="submitForm">
+    <form class="mt-6 w-full max-w-3xl" @submit.prevent="submitForm">
       <div
         v-if="errorMessage"
         class="mb-3 flex items-center justify-between rounded-md bg-red-100 px-3 py-1"
@@ -186,14 +186,14 @@ export default {
     `
 
     const observationInput = reactive({
-      active: true,
       name: 'Beautiful bird',
-      birdId: 'Buizerd',
-      locationId: 'Magdalenapark',
       description:
         'A beautiful common buzzard (buteo buteo) flying over Kortrijk.',
       weather: 'Overcast, clouded',
+      birdId: 'Buizerd',
+      locationId: 'Magdalenapark',
       userId: user.value.uid,
+      active: true,
     })
 
     const { result, loading, error } = useQuery(INSERT_DATA)

@@ -1,7 +1,7 @@
 <template>
-  <div class="px-6">
+  <div class="px-6 py-6">
     <main class="mx-auto max-w-6xl">
-      <h1 v-if="title" class="font-theme text-5xl font-bold">
+      <h1 v-if="title" class="font-theme mb-6 text-5xl font-light">
         {{ title }}
       </h1>
 
