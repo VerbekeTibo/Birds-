@@ -21,9 +21,9 @@ export class Observation {
   @Column()
   name: string
 
-  @Field({ nullable: true })
-  @Column({ nullable: true })
-  userId?: string
+  @Field()
+  @Column()
+  userId: string
 
   @Field({ nullable: true })
   @Column({ nullable: true })

@@ -186,6 +186,7 @@ export default {
     `
 
     const observationInput = reactive({
+      active: true,
       name: 'Beautiful bird',
       birdId: 'Buizerd',
       locationId: 'Magdalenapark',
@@ -196,8 +197,6 @@ export default {
     })
 
     const { result, loading, error } = useQuery(INSERT_DATA)
-    console.log(observationInput)
-
     const { mutate: addObservation } = useMutation(ADD_OBSERVATION, () => ({
       // Callback function for reactive data & variable name without $...
       variables: {
