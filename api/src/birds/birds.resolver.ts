@@ -37,7 +37,10 @@ export class BirdsResolver {
     return this.birdsService.update(updateBirdInput)
   }
 
-  // TODO: make better.
+  // TODO: birdsByLocation
+
+  // TODO: birdsByCategory
+
   @Mutation(() => ClientMessage)
   async removeBird(
     @Args('id', { type: () => String }) id: string,

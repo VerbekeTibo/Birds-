@@ -8,7 +8,7 @@ async function bootstrap() {
   await app.listen(port)
 
   console.info(
-    `👋\nWelcome to the server.\nVisit http://localhost:${port}/graphql`,
+    `👋\nWelcome to the server.\nVisit ${await app.getUrl()}/graphql`,
   )
 }
 

@@ -17,9 +17,7 @@ import { Location } from 'src/locations/entities/location.entity'
 import {
   ClientMessage,
   MessageTypes,
-
 } from '../bootstrap/entities/ClientMessage'
-
 
 @Resolver(() => Observation)
 export class ObservationsResolver {
@@ -36,7 +34,6 @@ export class ObservationsResolver {
 
   @ResolveField()
   location(@Parent() o: Observation): Promise<Location> {
-    //@ts-ignore
     return this.locationService.findOne(o.locationId)
   }
 

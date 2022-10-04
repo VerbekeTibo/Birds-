@@ -18,8 +18,8 @@ export class DatabaseSeedService {
     for (const jsonb of jsonBirdsSeed) {
       const b = new Bird()
       b.name = jsonb.name
-      b.fullname = jsonb.fullName
-      b.category = ''
+      b.fullname = jsonb.fullname
+      b.category = jsonb.category
       b.observations = 0
       b.url = jsonb.url
       b.description = jsonb.description
