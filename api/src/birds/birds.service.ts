@@ -22,6 +22,7 @@ export class BirdsService {
     b.url = createBirdInput.url
     b.observations = createBirdInput.observations
     b.description = createBirdInput.description
+  
     return this.birdRepository.save(b)
   }
 
@@ -29,14 +30,14 @@ export class BirdsService {
     return this.birdRepository.find()
   }
 
-  findOne(id: string): Promise<Bird> {
+  findOne(id: ObjectId): Promise<Bird> {
     //@ts-ignore
     return this.birdRepository.findOne(new ObjectId(id))
   }
 
   update(updateBirdInput: UpdateBirdInput) {
     const update = new Bird()
-    update.id = updateBirdInput.id
+    update.id = new ObjectId(updateBirdInput.id)
     update.name = updateBirdInput.name
     update.fullname = updateBirdInput.fullname
     update.category = updateBirdInput.category
@@ -46,7 +47,7 @@ export class BirdsService {
     return this.birdRepository.save(update) // Save gives us an advantage!
   }
 
-  remove(id: string): Promise<DeleteResult> {
+  remove(id: ObjectId): Promise<DeleteResult> {
     //@ts-ignore
     return this.birdRepository.delete(new ObjectId(id))
   }

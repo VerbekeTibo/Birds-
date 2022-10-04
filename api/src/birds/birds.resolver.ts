@@ -8,6 +8,7 @@ import {
   ClientMessage,
   MessageTypes,
 } from '../bootstrap/entities/ClientMessages'
+import { ObjectId } from 'mongodb'
 
 @Resolver(() => Bird)
 export class BirdsResolver {
@@ -26,7 +27,7 @@ export class BirdsResolver {
   }
 
   @Query(() => Bird, { name: 'bird' })
-  findOne(@Args('id', { type: () => String }) id: string): Promise<Bird> {
+  findOne(@Args('id', { type: () => ObjectId }) id: ObjectId): Promise<Bird> {
     return this.birdsService.findOne(id)
   }
 
@@ -40,7 +41,7 @@ export class BirdsResolver {
   // TODO: make better.
   @Mutation(() => ClientMessage)
   async removeBird(
-    @Args('id', { type: () => String }) id: string,
+    @Args('id', { type: () => ObjectId }) id: ObjectId,
   ): Promise<ClientMessage> {
     const deleted = await this.birdsService.remove(id)
     if (deleted.affected <= 1)

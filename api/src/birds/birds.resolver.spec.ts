@@ -1,6 +1,6 @@
 import { Test, TestingModule } from '@nestjs/testing';
 import { ObjectId } from 'mongodb';
-import { MessageTypes } from 'src/bootstrap/entities/ClientMessages';
+import { ClientMessage, MessageTypes } from '../bootstrap/entities/ClientMessages';
 import { BirdsResolver } from './birds.resolver';
 import { BirdsService } from './birds.service';
 import { CreateBirdInput } from './dto/create-bird.input';
@@ -141,14 +141,19 @@ describe('BirdsResolver', () => {
           .spyOn(service, 'remove')
           .mockResolvedValue({ affected: 1, raw: '' })
         result = await resolver.removeBird(createBird().id)
-        expect(result).toEqual({ type: MessageTypes.success, message: 'Bird deleted successfully', statusCode: 200 })
+        expect(result).toEqual({ type: MessageTypes.success, message: 'Bird deleted', statusCode: 200 })
       })
       it('should return the correct error messages', async () => {
         jest
           .spyOn(service, 'remove')
-          .mockResolvedValue({ affected: 0, raw: '' })
+          .mockResolvedValue({ affected: 10, raw: '' })
         result = await resolver.removeBird(createBird().id)
-        expect(result).toEqual({ type: MessageTypes.error, message: 'Delete action not found', statusCode: 400 })
+        const expectResult: ClientMessage = {
+          type: MessageTypes.error,
+          message: 'Delete action went very wrong.',
+          statusCode: 400
+        }
+        expect(result).toEqual(expectResult)
       })
     })
   })
