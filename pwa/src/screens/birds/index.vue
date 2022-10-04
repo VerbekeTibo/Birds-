@@ -7,7 +7,7 @@
         class="grid animate-pulse gap-12 sm:grid-cols-2 md:grid-cols-4 lg:grid-cols-5"
         v-if="loading"
       >
-        <div v-for="i of 10" :key="i">
+        <div v-for="i of skeletons" :key="i">
           <div class="aspect-square bg-neutral-200"></div>
           <p class="my-1 h-6 w-12 rounded bg-neutral-200"></p>
           <p class="my-2 h-6 w-12 rounded bg-neutral-100"></p>
@@ -37,6 +37,7 @@
 <script lang="ts">
 import gql from 'graphql-tag'
 import { useQuery } from '@vue/apollo-composable'
+import { ref, Ref } from 'vue-demi'
 
 export default {
   setup() {
@@ -51,13 +52,15 @@ export default {
         }
       }
     `
-
     const { result, loading, error } = useQuery(BIRDS)
+
+    const skeletons: Ref<number> = ref(10)
 
     return {
       result,
       loading,
       error,
+      skeletons,
     }
   },
 }
