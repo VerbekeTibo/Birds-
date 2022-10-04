@@ -6,6 +6,10 @@ import { VitePluginFonts } from 'vite-plugin-fonts'
 export default defineConfig({
   // build: {},
 
+  server: {
+    host: '0.0.0.0',
+  },
+
   plugins: [
     vue(),
 
