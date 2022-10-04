@@ -1,6 +1,6 @@
 <template>
   <route-holder title="Add observation">
-    <form @submit.prevent="submitForm">
+    <form class="mt-6" @submit.prevent="submitForm">
       <div
         v-if="errorMessage"
         class="mb-3 flex items-center justify-between rounded-md bg-red-100 px-3 py-1"
@@ -50,7 +50,7 @@
             <option value="Pick a bird species" selected disabled>
               Pick a bird species
             </option>
-            <option v-for="b of result.birds" :key="b.id" :value="b">
+            <option v-for="b of result.birds" :key="b.id" :value="b.id">
               {{ b.name }}
             </option>
           </select>
@@ -76,7 +76,7 @@
             <option value="Pick a location" selected disabled>
               Pick a location
             </option>
-            <option v-for="l of result.locations" :key="l.id" :value="l">
+            <option v-for="l of result.locations" :key="l.id" :value="l.id">
               {{ l.name }}
             </option>
           </select>
@@ -196,14 +196,19 @@ export default {
     })
 
     const { result, loading, error } = useQuery(INSERT_DATA)
-    const { mutate: addObservation } = useMutation(ADD_OBSERVATION, {
+    console.log(observationInput)
+
+    const { mutate: addObservation } = useMutation(ADD_OBSERVATION, () => ({
+      // Callback function for reactive data & variable name without $...
       variables: {
-        $input: { ...observationInput },
+        createObservationInput: observationInput,
       },
-    })
+    }))
 
     const submitForm = async () => {
       const observation = await addObservation().catch((err) => {
+        console.log({ err })
+
         errorMessage.value = err.message
       })
 
