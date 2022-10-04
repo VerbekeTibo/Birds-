@@ -7,7 +7,7 @@ import { UpdateBirdInput } from './dto/update-bird.input'
 import {
   ClientMessage,
   MessageTypes,
-} from 'src/bootstrap/entities/ClientMessage'
+} from '../bootstrap/entities/ClientMessage'
 
 @Resolver(() => Bird)
 export class BirdsResolver {

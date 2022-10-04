@@ -12,7 +12,7 @@ import { Location } from './entities/location.entity'
 import { CreateLocationInput } from './dto/create-location.input'
 import { UpdateLocationInput } from './dto/update-location.input'
 import { ObservationsService } from 'src/observations/observations.service'
-import { Observation } from 'src/observations/entities/observation.entity'
+import { Observation } from '../observations/entities/observation.entity'
 import {
   ClientMessage,
   MessageTypes,
