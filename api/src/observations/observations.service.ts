@@ -1,9 +1,10 @@
 import { Injectable } from '@nestjs/common'
-import { CreateObservationInput } from './dto/create-observation.input'
-import { UpdateObservationInput } from './dto/update-observation.input'
 import { InjectRepository } from '@nestjs/typeorm'
 import { ObjectId } from 'mongodb'
 import { Repository } from 'typeorm'
+
+import { CreateObservationInput } from './dto/create-observation.input'
+import { UpdateObservationInput } from './dto/update-observation.input'
 import { Observation } from './entities/observation.entity'
 
 @Injectable()
@@ -18,6 +19,7 @@ export class ObservationsService {
     o.name = createObservationInput.name
     o.description = createObservationInput.description
     o.weather = createObservationInput.weather
+    o.userId = createObservationInput.userId
     o.birdId = createObservationInput.birdId // TODO: the bird has been spotted!
     o.locationId = createObservationInput.locationId // TODO: something has been spotted on this location!
     o.active = createObservationInput.active
