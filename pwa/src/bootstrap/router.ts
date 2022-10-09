@@ -41,6 +41,13 @@ const routes: RouteRecordRaw[] = [
         },
       },
       {
+        path: 'observations/map',
+        component: () => import('../components/Mapview.vue'),
+        meta: {
+          needsAuthentication: true,
+        },
+      },
+      {
         path: 'observations/add',
         component: () => import('../screens/observations/Add.vue'),
         meta: {

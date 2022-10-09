@@ -1,5 +1,11 @@
 <template>
   <route-holder title="Observations">
+    <template #header-actions>
+      <RouterLink to="/observations/add"
+      class="bg-theme rounded-md bg-neutral-800 px-4 py-2 text-white" @click="createObservation">
+      Create observation
+      </RouterLink>
+    </template>
     <ObservationsTable v-if="result" :observations="result.observations" />
   </route-holder>
 </template>
