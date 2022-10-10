@@ -12,6 +12,11 @@ export default {
   setup() {
     const { user, logout } = useAuthentication()
     const { replace } = useRouter()
+    const getToken = async () => {
+      const token = await user.value?.getIdToken()
+      console.log(token)
+    }
+    getToken()
 
     const handleLogOut = () => {
       logout().then(() => {

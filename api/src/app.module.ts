@@ -5,8 +5,7 @@ import { ObservationsModule } from './observations/observations.module'
 import { LocationsModule } from './locations/locations.module'
 import { BootstrapModule } from './bootstrap/bootstrap.module'
 import { DatabaseSeedModule } from './seed/seed.module'
-import { AuthModule } from './auth/auth.module';
-import { FirebaseService } from './auth/services/firebase.service';
+import { AuthModule } from './auth/auth.module'
 
 @Module({
   imports: [
@@ -20,6 +19,6 @@ import { FirebaseService } from './auth/services/firebase.service';
 
   exports: [],
 
-  providers: [FirebaseService],
+  providers: [],
 })
 export class AppModule {}

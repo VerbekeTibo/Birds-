@@ -10,6 +10,9 @@ export class FirebaseService {
         this.app = initializeApp({
             credential: applicationDefault(),
             
+            
         });
+        
+        console.log(this.app.options.projectId);
     }
-    getAuth = ():Auth => this.getAuth() }
+    getAuth = ():Auth => getAuth() }

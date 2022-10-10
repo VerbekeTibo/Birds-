@@ -192,7 +192,7 @@ export default {
       weather: 'Overcast, clouded',
       birdId: 'Buizerd',
       locationId: 'Magdalenapark',
-      userId: user.value?.uid,
+      userId: user.value!.uid,
       active: true,
     })
 

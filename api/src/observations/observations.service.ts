@@ -16,6 +16,7 @@ export class ObservationsService {
   create(createObservationInput: CreateObservationInput): Promise<Observation> {
     const o = new Observation()
     o.name = createObservationInput.name
+    o.userId = createObservationInput.userId
     o.description = createObservationInput.description
     o.weather = createObservationInput.weather
     o.birdId = createObservationInput.birdId // TODO: the bird has been spotted!
