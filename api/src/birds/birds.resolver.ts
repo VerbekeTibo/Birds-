@@ -7,7 +7,7 @@ import { UpdateBirdInput } from './dto/update-bird.input'
 import {
   ClientMessage,
   MessageTypes,
-} from '../bootstrap/entities/ClientMessages'
+} from '../bootstrap/entities/ClientMessage'
 
 @Resolver(() => Bird)
 export class BirdsResolver {
@@ -37,7 +37,10 @@ export class BirdsResolver {
     return this.birdsService.update(updateBirdInput)
   }
 
-  // TODO: make better.
+  // TODO: birdsByLocation
+
+  // TODO: birdsByCategory
+
   @Mutation(() => ClientMessage)
   async removeBird(
     @Args('id', { type: () => String }) id: string,

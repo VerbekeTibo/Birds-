@@ -7,6 +7,7 @@ export declare class Bird {
     url: string;
     observations: number;
     description?: string;
+    active?: boolean;
     createdAt?: Date;
     updatedAt?: Date;
 }

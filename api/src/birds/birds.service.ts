@@ -22,6 +22,7 @@ export class BirdsService {
     b.url = createBirdInput.url
     b.observations = createBirdInput.observations
     b.description = createBirdInput.description
+  
     return this.birdRepository.save(b)
   }
 
@@ -36,7 +37,7 @@ export class BirdsService {
 
   update(updateBirdInput: UpdateBirdInput) {
     const update = new Bird()
-    update.id = updateBirdInput.id
+    update.id = new ObjectId(updateBirdInput.id)
     update.name = updateBirdInput.name
     update.fullname = updateBirdInput.fullname
     update.category = updateBirdInput.category

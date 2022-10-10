@@ -14,11 +14,11 @@ var __param = (this && this.__param) || function (paramIndex, decorator) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.BirdsResolver = void 0;
 const graphql_1 = require("@nestjs/graphql");
-const birds_service_1 = require("./birds.service");
 const bird_entity_1 = require("./entities/bird.entity");
+const birds_service_1 = require("./birds.service");
 const create_bird_input_1 = require("./dto/create-bird.input");
 const update_bird_input_1 = require("./dto/update-bird.input");
-const ClientMessages_1 = require("../entities/ClientMessages");
+const ClientMessage_1 = require("../bootstrap/entities/ClientMessage");
 let BirdsResolver = class BirdsResolver {
     constructor(birdsService) {
         this.birdsService = birdsService;
@@ -38,12 +38,20 @@ let BirdsResolver = class BirdsResolver {
     async removeBird(id) {
         const deleted = await this.birdsService.remove(id);
         if (deleted.affected <= 1)
-            return { type: ClientMessages_1.MessageTypes.success, message: 'Bird deleted', statusCode: 200 };
-        return { type: ClientMessages_1.MessageTypes.error, message: 'Delete action went wrong', statusCode: 400 };
+            return {
+                type: ClientMessage_1.MessageTypes.success,
+                message: 'Bird deleted',
+                statusCode: 200,
+            };
+        return {
+            type: ClientMessage_1.MessageTypes.error,
+            message: 'Delete action went very wrong.',
+            statusCode: 400,
+        };
     }
 };
 __decorate([
-    (0, graphql_1.Mutation)(() => bird_entity_1.Bird, { description: 'Create a bird' }),
+    (0, graphql_1.Mutation)(() => bird_entity_1.Bird, { description: 'Create a bird using the DTO.' }),
     __param(0, (0, graphql_1.Args)('createBirdInput')),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [create_bird_input_1.CreateBirdInput]),
@@ -57,7 +65,7 @@ __decorate([
 ], BirdsResolver.prototype, "findAll", null);
 __decorate([
     (0, graphql_1.Query)(() => bird_entity_1.Bird, { name: 'bird' }),
-    __param(0, (0, graphql_1.Args)('id', { type: () => graphql_1.Int })),
+    __param(0, (0, graphql_1.Args)('id', { type: () => String })),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [String]),
     __metadata("design:returntype", Promise)
@@ -70,7 +78,7 @@ __decorate([
     __metadata("design:returntype", Promise)
 ], BirdsResolver.prototype, "updateBird", null);
 __decorate([
-    (0, graphql_1.Mutation)(() => ClientMessages_1.ClientMessage),
+    (0, graphql_1.Mutation)(() => ClientMessage_1.ClientMessage),
     __param(0, (0, graphql_1.Args)('id', { type: () => String })),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [String]),
