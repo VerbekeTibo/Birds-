@@ -18,16 +18,13 @@
 export default {
   props: {
     title: {
-      type: String,
+      type: String as () => string,
       required: false,
     },
   },
 
-  setup(props: any) {
-    // TODO: rework for TS highlighting
-    return {
-      title: props.title,
-    }
+  setup() {
+    return {}
   },
 }
 </script>

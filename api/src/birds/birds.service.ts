@@ -22,7 +22,7 @@ export class BirdsService {
     b.url = createBirdInput.url
     b.observations = createBirdInput.observations
     b.description = createBirdInput.description
-  
+
     return this.birdRepository.save(b)
   }
 

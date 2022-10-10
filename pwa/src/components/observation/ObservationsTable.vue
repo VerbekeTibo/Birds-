@@ -33,7 +33,7 @@
         <td>{{ o.location.name }}</td>
         <td>{{ o.name }}</td>
         <td>{{ o.userId }}</td>
-        <td>{{ new Date(o.createdAt).toLocaleDateString() }}</td>
+        <td>{{ new Date(o.createdAt!).toLocaleDateString() }}</td>
       </tr>
     </tbody>
     <tbody class="grid w-full place-items-center" v-else>
@@ -53,10 +53,8 @@ export default {
     },
   },
 
-  setup(props) {
-    return {
-      observations: props.observations,
-    }
+  setup() {
+    return {}
   },
 }
 </script>
