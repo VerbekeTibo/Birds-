@@ -9,6 +9,8 @@ import { Strategy } from 'passport-http-bearer'
 import { auth, FirebaseError } from 'firebase-admin'
 import * as firebaseAdmin from 'firebase-admin'
 
+import { FirebaseService } from './services/firebase.service'
+
 type DecodedIdToken = firebaseAdmin.auth.DecodedIdToken
 export type FirebaseAuthDecodedUser = Readonly<
   Pick<DecodedIdToken, 'uid' | 'email' | 'email_verified'>
