@@ -12,7 +12,7 @@ export class FirebaseService {
       credential: applicationDefault(), // Not always the case!
     })
 
-    console.log(this.app.options)
+    if (!this.app) throw new Error('Firebase app not initialized')
   }
 
   // eigen              firebase getAuth
