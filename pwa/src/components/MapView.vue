@@ -14,7 +14,7 @@ export default defineComponent({
   setup() {
     onMounted(() => {
       mapboxgl.accessToken =
-        'pk.eyJ1IjoibXJyZWQ1MiIsImEiOiJjbDh2cWVxdzkwMXN6M3Zrang1dndwN2YwIn0.LKAtake4gMArFqnuyP3PDQ'
+        import.meta.env.VITE_mapBox
       const map = new mapboxgl.Map({
         container: 'map',
         style: 'mapbox://styles/mapbox/streets-v11',

@@ -24,7 +24,9 @@
           :alt="`Drawing of a ${b.name}`"
         />
         <h2 class="font-theme text-2xl font-light">{{ b.name }}</h2>
-        <p class="text-sm">{{ b.category }}</p>
+        <p class="text-sm font-semibold tracking-wide text-neutral-500">
+          {{ b.category }}
+        </p>
       </RouterLink>
     </div>
   </route-holder>

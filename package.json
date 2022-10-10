@@ -19,5 +19,6 @@
   "workspaces": [
     "pwa",
     "api"
-  ]
+  ],
+  "enableForWorkspaceTypeScriptVersions": true
 }
