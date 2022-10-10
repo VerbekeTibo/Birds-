@@ -13,6 +13,8 @@ const observations_module_1 = require("./observations/observations.module");
 const locations_module_1 = require("./locations/locations.module");
 const bootstrap_module_1 = require("./bootstrap/bootstrap.module");
 const seed_module_1 = require("./seed/seed.module");
+const auth_module_1 = require("./auth/auth.module");
+const firebase_service_1 = require("./auth/services/firebase.service");
 let AppModule = class AppModule {
 };
 AppModule = __decorate([
@@ -23,8 +25,10 @@ AppModule = __decorate([
             observations_module_1.ObservationsModule,
             locations_module_1.LocationsModule,
             seed_module_1.DatabaseSeedModule,
+            auth_module_1.AuthModule,
         ],
         exports: [],
+        providers: [firebase_service_1.FirebaseService],
     })
 ], AppModule);
 exports.AppModule = AppModule;

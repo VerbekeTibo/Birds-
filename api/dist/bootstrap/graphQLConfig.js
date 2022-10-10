@@ -7,4 +7,4 @@ exports.graphqlConfig = {
     sortSchema: true,
     autoSchemaFile: true,
 };
-//# sourceMappingURL=graphQLConfig.js.map
+//# sourceMappingURL=graphqlConfig.js.map
