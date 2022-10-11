@@ -208,6 +208,7 @@ export default {
       weather: 'Overcast, clouded',
       birdId: 'Buizerd',
       location: {} as Partial<Location>,
+      locationId: '',
       geolocation: { lng: 3.3232699, lat: 50.8425729 },
       userId: user.value!.uid,
       active: true,
@@ -239,6 +240,7 @@ export default {
     // })
 
     const submitForm = async () => {
+      observationInput.locationId = observationInput.location.id!
       const observation = await addObservation().catch((err) => {
         console.log({ err })
 

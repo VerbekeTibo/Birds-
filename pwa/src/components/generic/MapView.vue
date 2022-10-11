@@ -42,9 +42,16 @@ export default {
       }
     }
 
-    const renderPolygonsIfAny = (map: Map) => {
-      console.log(props.polygons)
+    const centerMapOnPolygons = (map: Map) => {
+      if (props.polygons && props.polygons.length < 1) return
 
+      const { lng, lat } = { lng: undefined, lat: undefined }
+      const amount: number = 0
+
+      props.polygons.map(({ coordinates }) => {})
+    }
+
+    const renderPolygonsIfAny = (map: Map) => {
       if (props.polygons && props.polygons.length < 1) return
 
       for (const polygon in props.polygons!) {
@@ -64,6 +71,8 @@ export default {
           },
         })
       }
+
+      centerMapOnPolygons(map)
     }
 
     // DOM Content Loaded
