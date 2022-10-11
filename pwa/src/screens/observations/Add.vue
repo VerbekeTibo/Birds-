@@ -140,7 +140,7 @@
 </template>
 
 <script lang="ts">
-import { reactive, ref, Ref, watch } from 'vue'
+import { reactive, ref, Ref } from 'vue'
 import gql from 'graphql-tag'
 import { useRouter } from 'vue-router'
 import { useQuery, useMutation } from '@vue/apollo-composable'
