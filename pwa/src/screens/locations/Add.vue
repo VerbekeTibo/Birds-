@@ -39,7 +39,14 @@
         >
           <span class="mb-2 block">Location</span>
 
-          <MapView class="rounded-md" />
+          <span class="sr-only"
+            >A map view to select the location of the observed bird.</span
+          >
+          <map-view
+            class="rounded-md"
+            :map-coordinates="{ lng: 3.3232699, lat: 50.8425729 }"
+            @coordinateSelection="locationInput.location = $event"
+          />
         </label>
       </div>
 

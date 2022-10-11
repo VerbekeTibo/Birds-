@@ -1,5 +1,7 @@
 <template>
-  <router-view class="min-h-screen bg-neutral-50"></router-view>
+  <router-view
+    class="min-h-screen bg-neutral-50 dark:bg-neutral-700"
+  ></router-view>
 </template>
 
 <script lang="ts">
