@@ -45,10 +45,26 @@ export default {
     const centerMapOnPolygons = (map: Map) => {
       if (props.polygons && props.polygons.length < 1) return
 
-      const { lng, lat } = { lng: undefined, lat: undefined }
-      const amount: number = 0
+      let { lng, lat } = { lng: 0, lat: 0 }
+      let amount: number = 0
 
-      props.polygons.map(({ coordinates }) => {})
+      props.polygons!.map(({ coordinates }) => {
+        coordinates.map((coordinate) => {
+          coordinate.map(([x, y]) => {
+            amount++
+            lng += x
+            lat += y
+          })
+        })
+      })
+
+      console.log(lng, lat, amount)
+
+      map.flyTo({
+        center: [lng / amount, lat / amount],
+        zoom: 16,
+        speed: 1,
+      })
     }
 
     const renderPolygonsIfAny = (map: Map) => {
