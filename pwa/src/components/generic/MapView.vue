@@ -62,7 +62,7 @@ export default {
 
       map.flyTo({
         center: [lng / amount, lat / amount],
-        zoom: 16,
+        zoom: 15,
         speed: 1,
       })
     }

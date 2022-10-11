@@ -2,4 +2,5 @@
 pwa/.env
 **/dist/
 **/.env
-api/mct-birds-c3137a1fd5f4.json
+
+api/src/bootstrap/envs/

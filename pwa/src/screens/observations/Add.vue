@@ -209,6 +209,7 @@ export default {
       birdId: 'Buizerd',
       location: {} as Partial<Location>,
       locationId: '',
+      // TODO: make a real geolocation!
       geolocation: { lng: 3.3232699, lat: 50.8425729 },
       userId: user.value!.uid,
       active: true,
