@@ -32,6 +32,13 @@ const routes: RouteRecordRaw[] = [
         path: 'locations',
         component: () => import('../screens/locations/index.vue'),
       },
+      {
+        path: 'locations/add',
+        component: () => import('../screens/locations/Add.vue'),
+        meta: {
+          needsAuthentication: true,
+        },
+      },
 
       {
         path: 'observations',
@@ -42,7 +49,7 @@ const routes: RouteRecordRaw[] = [
       },
       {
         path: 'observations/map',
-        component: () => import('../components/Mapview.vue'),
+        component: () => import('../components/generic/MapView.vue'),
         meta: {
           needsAuthentication: true,
         },

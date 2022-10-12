@@ -16,9 +16,11 @@ export class ObservationsService {
   create(createObservationInput: CreateObservationInput): Promise<Observation> {
     const o = new Observation()
     o.name = createObservationInput.name
+    o.userId = createObservationInput.userId
     o.description = createObservationInput.description
     o.weather = createObservationInput.weather
     o.birdId = createObservationInput.birdId // TODO: the bird has been spotted!
+    o.geolocation = createObservationInput.geoPoint
     o.locationId = createObservationInput.locationId // TODO: something has been spotted on this location!
     o.active = createObservationInput.active
     return this.observationRepository.save(o)
@@ -41,6 +43,7 @@ export class ObservationsService {
     update.description = updateObservationInput.description
     update.weather = updateObservationInput.weather
     update.birdId = updateObservationInput.birdId
+    update.geolocation = updateObservationInput.geoPoint
     update.locationId = updateObservationInput.locationId
     update.active = updateObservationInput.active
     return this.observationRepository.save(update)

@@ -1,6 +1,8 @@
 import { Field, ID, ObjectType } from '@nestjs/graphql'
+import { Point } from 'geojson'
 import { ObjectId } from 'mongodb'
 import { Bird } from 'src/birds/entities/bird.entity'
+import { GeoPoint } from 'src/locations/entities/geopoint.entity'
 import { Location } from 'src/locations/entities/location.entity'
 import {
   Column,
@@ -38,8 +40,13 @@ export class Observation {
   @Field(() => Location)
   location: Location
 
+
   @Column()
   locationId: string
+
+  @Field(() => GeoPoint)
+  @Column({ nullable: true, type: 'simple-json' })
+  geolocation: Point
 
   @Field({ nullable: true })
   @Column()

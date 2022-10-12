@@ -1,2 +1,4 @@
 **/node_modules/
-pwa/.env
+.env
+api/birdstibo-firebase-adminsdk.json
+dist
