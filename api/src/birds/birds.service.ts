@@ -12,7 +12,7 @@ export class BirdsService {
   constructor(
     @InjectRepository(Bird)
     private readonly birdRepository: Repository<Bird>,
-  ) {}
+  ) { }
 
   create(createBirdInput: CreateBirdInput): Promise<Bird> {
     const b = new Bird()
@@ -22,7 +22,7 @@ export class BirdsService {
     b.url = createBirdInput.url
     b.observations = createBirdInput.observations
     b.description = createBirdInput.description
-  
+
     return this.birdRepository.save(b)
   }
 
