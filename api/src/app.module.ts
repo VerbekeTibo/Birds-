@@ -10,15 +10,17 @@ import { AuthModule } from './auth/auth.module'
 @Module({
   imports: [
     BootstrapModule,
+    AuthModule,
+
     BirdsModule,
     ObservationsModule,
     LocationsModule,
+
     DatabaseSeedModule,
-    AuthModule,
   ],
 
   exports: [],
 
   providers: [],
 })
-export class AppModule {}
+export class AppModule { }
