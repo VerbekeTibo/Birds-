@@ -4,7 +4,7 @@ import { Observation } from 'src/observations/entities/observation.entity';
 import { Column, CreateDateColumn, Entity, ObjectIdColumn, UpdateDateColumn } from 'typeorm';
 
 @Entity()
-@ObjectType({ description: 'user' })
+@ObjectType()
 export class User {
 
   @Field(() => ID)
@@ -17,11 +17,11 @@ export class User {
 
   @Field(()=> [Observation], {nullable: 'itemsAndList'}) // Can return []
   @Column({nullable: true})
-  observations: Observation[]
+  observations?: Observation[]
 
-  @Field( () =>Int)
-  @Column()
-  observationCount: number
+  @Field( () => Int)
+  @Column({default: 0})
+  observationCount?: number
 
   @Field({ nullable: true })
   @CreateDateColumn({ type: 'timestamp', nullable: true })

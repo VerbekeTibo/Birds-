@@ -21,13 +21,18 @@ export class UsersResolver {
   }
 
   @Query(() => User, { name: 'user' })
-  findOne(@Args('id', { type: () => Int }) id: number) {
+  findOne(@Args('id', { type: () => Int }) id: string) {
     return this.usersService.findOne(id);
+  }
+
+  @Query(() => [User], { name: 'user' })
+  findByUid(@Args('uid', { type: () => String }) uid: string) {
+    return this.usersService.findOneByUid(uid);
   }
 
   @Mutation(() => User)
   updateUser(@Args('updateUserInput') updateUserInput: UpdateUserInput) {
-    return this.usersService.update(updateUserInput.id, updateUserInput);
+    return this.usersService.update(updateUserInput);
   }
 
   @Mutation(() => User)
@@ -40,13 +45,13 @@ export class UsersResolver {
           type: MessageTypes.success
         })
       })
-      .catch(()=> {
-        resolve({
-          statusCode: 500,
-          message: `User with id ${id} could not be deleted.`,
-          type: MessageTypes.error
+        .catch(() => {
+          resolve({
+            statusCode: 500,
+            message: `User with id ${id} could not be deleted.`,
+            type: MessageTypes.error
+          })
         })
-      })
     )
   }
 }
