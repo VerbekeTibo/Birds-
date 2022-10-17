@@ -6,6 +6,7 @@ import { InjectRepository } from '@nestjs/typeorm'
 import { DeleteResult, Repository } from 'typeorm'
 import { ObjectId } from 'mongodb'
 import { Observation } from 'src/observations/entities/observation.entity'
+import { Point } from 'geojson'
 
 @Injectable()
 export class LocationsService {
@@ -56,5 +57,17 @@ export class LocationsService {
       : [...observations]
 
     return this.locationRepository.save(l)
+  }
+  findLocationByPoint(p: Point): Promise<Location[]> {
+    return this.locationRepository.find({
+      where: {
+        area: {
+          //@ts-ignore
+          $geoIntersects: {
+            $geometry: p,
+          },
+        },
+      },
+    })
   }
 }

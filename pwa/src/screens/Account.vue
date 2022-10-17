@@ -2,7 +2,7 @@
   <route-holder :title="`Hi, ${user?.displayName}`">
     <div class="mb-12">
       <h2 class="font-theme mb-3 text-2xl font-medium tracking-wide">Stats</h2>
-      <p>Birds spotted: {{ customUser?.observationsCount }}</p>
+      <p>Birds spotted: {{ customUser?.observationCount }}</p>
       <button
         class="@dark:bg-neutral-50 @dark:text-neutral-800 mt-6 rounded-md bg-neutral-800 px-4 py-2 text-white"
         @click="handleLogOut"
@@ -15,7 +15,7 @@
       <h2 class="font-theme mb-3 text-2xl font-medium tracking-wide">
         Recent observations
       </h2>
-      <observations-table :observations="customUser.observations!" />
+      <observations-table :observations="customUser.observations" />
     </div>
   </route-holder>
 </template>
