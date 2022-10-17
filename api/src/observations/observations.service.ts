@@ -1,28 +1,43 @@
 import { Injectable } from '@nestjs/common'
-import { CreateObservationInput } from './dto/create-observation.input'
-import { UpdateObservationInput } from './dto/update-observation.input'
 import { InjectRepository } from '@nestjs/typeorm'
 import { ObjectId } from 'mongodb'
 import { Repository } from 'typeorm'
+
+import { BirdsService } from 'src/birds/birds.service'
+import { CreateObservationInput } from './dto/create-observation.input'
+import { UpdateObservationInput } from './dto/update-observation.input'
 import { Observation } from './entities/observation.entity'
+import { LocationsService } from 'src/locations/locations.service'
+import { UsersService } from 'src/users/users.service'
 
 @Injectable()
 export class ObservationsService {
   constructor(
     @InjectRepository(Observation)
     private readonly observationRepository: Repository<Observation>,
+    private readonly birdService: BirdsService,
+    private readonly locationService: LocationsService,
+    private readonly userService: UsersService,
   ) {}
 
   create(createObservationInput: CreateObservationInput): Promise<Observation> {
     const o = new Observation()
     o.name = createObservationInput.name
-    o.userId = createObservationInput.userId
     o.description = createObservationInput.description
     o.weather = createObservationInput.weather
-    o.birdId = createObservationInput.birdId // TODO: the bird has been spotted!
+    o.userId = createObservationInput.userId
+    o.birdId = createObservationInput.birdId
     o.geolocation = createObservationInput.geoPoint
     o.locationId = createObservationInput.locationId // TODO: something has been spotted on this location!
     o.active = createObservationInput.active
+
+    console.log('USER', o.userId)
+
+    this.birdService.incrementObservation(o.birdId)
+    this.locationService.incrementLocation(o.locationId, [o])
+    //@ts-ignore
+    this.userService.incrementObservation(o.userId, [o])
+
     return this.observationRepository.save(o)
   }
 
@@ -43,8 +58,8 @@ export class ObservationsService {
     update.description = updateObservationInput.description
     update.weather = updateObservationInput.weather
     update.birdId = updateObservationInput.birdId
-    update.geolocation = updateObservationInput.geoPoint
     update.locationId = updateObservationInput.locationId
+    update.geolocation = updateObservationInput.geoPoint
     update.active = updateObservationInput.active
     return this.observationRepository.save(update)
   }

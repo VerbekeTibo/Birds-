@@ -6,6 +6,7 @@ import { ObjectId } from 'mongodb'
 import { CreateUserInput } from './dto/create-user.input'
 import { UpdateUserInput } from './dto/update-user.input'
 import { User } from './entities/user.entity'
+import { Observation } from 'src/observations/entities/observation.entity'
 
 @Injectable()
 export class UsersService {
@@ -37,12 +38,28 @@ export class UsersService {
     update.id = new ObjectId(updateUserInput.id)
     update.uid = updateUserInput.uid
     update.observations = updateUserInput.observations
-    update.observationCount = updateUserInput.observationsCount
+    //@ts-ignore
+    update.observationsCount = updateUserInput.observationsCount
     return this.userRepository.save(update)
   }
 
   remove(id: string) {
     //@ts-ignore
     return this.userRepository.delete(new ObjectId(id))
+  }
+
+  async incrementObservation(
+    uid: string,
+    observations: Observation[],
+  ): Promise<void> {
+    const u: User = await this.findOneBy(uid)
+
+    u.observations = u.observations
+      ? [...observations, ...u.observations]
+      : [...observations]
+      //@ts-ignore
+    u.observationsCount = u.observationsCount + observations.length
+
+    await this.userRepository.save(u)
   }
 }

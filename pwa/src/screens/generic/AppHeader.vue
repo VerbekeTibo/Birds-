@@ -12,7 +12,7 @@
 </template>
 
 <script lang="ts">
-import Logo from './logo.vue'
+import Logo from '../generic/Logo.vue'
 
 import AppNavigation from '../generic/AppNavigation.vue'
 
