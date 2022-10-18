@@ -30,7 +30,7 @@ export class ObservationsResolver {
     private readonly observationsService: ObservationsService,
     private readonly birdService: BirdsService,
     private readonly locationService: LocationsService,
-    private readonly notificationGateway: NotificationsGateway
+    private readonly notificationsGateway: NotificationsGateway,
   ) {}
 
   @ResolveField()
@@ -48,14 +48,17 @@ export class ObservationsResolver {
     @Args('createObservationInput')
     createObservationInput: CreateObservationInput,
   ) {
-    const o = await this.observationsService.create(createObservationInput)
-
-    const l = await this.locationService.findLocationByPoint(o.geolocation)
-    console.log('Is the observation in a known area?', l)
-    if(l.length >0){
-      this.notificationGateway.server.to(l[0].name).emit('bird:observation', o)
+    const obs = await this.observationsService.create(createObservationInput)
+    const locat = await this.locationService.findLocationByPoint(
+      obs.geolocation,
+    )
+    if (locat.length > 0) {
+      //verwittig iedereen in deze room
+      this.notificationsGateway.server
+        .to(locat[0].name)
+        .emit('bird:obsertvation', obs)
     }
-    return o
+    return obs
   }
 
   @UseGuards(FirebaseGuard)

@@ -33,6 +33,19 @@ export class LocationsService {
     return this.locationRepository.findOne(new ObjectId(id))
   }
 
+  findLocationByPoint(p: Point): Promise<Location[]> {
+    return this.locationRepository.find({
+      where: {
+        area: {
+          //@ts-ignore
+          $geoIntersects: {
+            $geometry: p,
+          },
+        },
+      },
+    })
+  }
+
   update(updateLocationInput: UpdateLocationInput) {
     const update = new Location()
     update.id = new ObjectId(updateLocationInput.id)
@@ -57,17 +70,5 @@ export class LocationsService {
       : [...observations]
 
     return this.locationRepository.save(l)
-  }
-  findLocationByPoint(p: Point): Promise<Location[]> {
-    return this.locationRepository.find({
-      where: {
-        area: {
-          //@ts-ignore
-          $geoIntersects: {
-            $geometry: p,
-          },
-        },
-      },
-    })
   }
 }

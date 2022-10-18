@@ -35,8 +35,7 @@ export class ObservationsService {
 
     this.birdService.incrementObservation(o.birdId)
     this.locationService.incrementLocation(o.locationId, [o])
-    //@ts-ignore
-    this.userService.incrementObservation(o.userId, [o])
+    //this.userService.incrementObservation(o.userId, [o])
 
     return this.observationRepository.save(o)
   }
