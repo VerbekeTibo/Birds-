@@ -12,7 +12,7 @@ export class BirdsService {
   constructor(
     @InjectRepository(Bird)
     private readonly birdRepository: Repository<Bird>,
-  ) { }
+  ) {}
 
   create(createBirdInput: CreateBirdInput): Promise<Bird> {
     const b = new Bird()
@@ -50,5 +50,12 @@ export class BirdsService {
   remove(id: string): Promise<DeleteResult> {
     //@ts-ignore
     return this.birdRepository.delete(new ObjectId(id))
+  }
+
+  async incrementObservation(id: string, amount = 1): Promise<void> {
+    //@ts-ignore
+    const b: Bird = await this.findOne(new ObjectId(id))
+    b.observations = b.observations + amount
+    await this.birdRepository.save(b)
   }
 }
