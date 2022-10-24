@@ -29,7 +29,7 @@ export default {
     },
   },
 
-  setup(props, { emit }) {
+  setup(props:any, { emit }:any) {
     const {
       createMap,
       renderMarkerIfAny,
