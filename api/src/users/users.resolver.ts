@@ -4,17 +4,22 @@ import { User } from './entities/user.entity'
 import { CreateUserInput } from './dto/create-user.input'
 import { UpdateUserInput } from './dto/update-user.input'
 import { MessageTypes } from 'src/bootstrap/entities/ClientMessage'
+import { UseGuards } from '@nestjs/common'
+import { FirebaseGuard } from 'src/auth/guards/firebase.guard'
+import { RolesGuard } from 'src/auth/guards/role.guard'
+
 
 @Resolver(() => User)
 export class UsersResolver {
-  constructor(private readonly usersService: UsersService) {}
+  constructor(private readonly usersService: UsersService) { }
 
   @Mutation(() => User)
   createUser(@Args('createUserInput') createUserInput: CreateUserInput) {
     return this.usersService.create(createUserInput)
   }
 
-  @Query(() => [User], { name: 'users' })
+  @UseGuards(FirebaseGuard, RolesGuard(['admin']))
+  @Query(() => [User], { name: 'users' },)
   findAll() {
     return this.usersService.findAll()
   }
