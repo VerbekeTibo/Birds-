@@ -13,6 +13,12 @@
           Log out
         </button>
       </div>
+      <div clas="span-2">
+        <h2 class="font-theme mb-3 text-2xl font-medium tracking-wide">Realtime</h2>
+        <div class="flex items-center gap-3">
+          <input id="server" type="checkbox"/>
+        </div>
+      </div>
     </div>
 
     <div v-if="customUser">
@@ -29,18 +35,25 @@ import RouteHolder from '../components/holders/RouteHolder.vue'
 import useAuthentication from '../composables/useAuthentication'
 import { useRouter } from 'vue-router'
 import useCustomUser from '../composables/useCustomUser'
-import ObservationTable from '../components/observations/ObservationsTable.vue'
+import useSocket from '../composables/useSocket'
+import ObservationsTable from '../components/observations/ObservationsTable.vue'
+import { ref, watch } from 'vue'
+import { disconnect } from 'process'
+import { log } from 'console'
 
 export default {
   components: {
     RouteHolder,
-    ObservationTable,
+    ObservationsTable,
   },
 
   setup() {
     const { user, logout } = useAuthentication()
     const { customUser } = useCustomUser()
     const { replace } = useRouter()
+    const { connectToServer, connected } = useSocket()
+
+    const connectedToServer = ref<boolean>()
 
     const handleLogOut = () => {
       logout().then(() => {
@@ -53,6 +66,20 @@ export default {
     }
 
     getToken()
+
+    watch(connectedToServer, ()=>{
+      if(connectedToServer.value === true){
+        console.log('connecting')
+        connectToServer()
+      }
+      else{
+        console.log('disconnecting')
+        disconnect()
+      }
+
+    })
+    console.log("Connecting")
+    connectToServer()
 
     return {
       user,
