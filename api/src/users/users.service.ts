@@ -1,6 +1,3 @@
-//DIT IS DE BASIS VOOR USERROLES
-//Verander wanneer het nodig is
-
 import { Injectable } from '@nestjs/common'
 import { InjectRepository } from '@nestjs/typeorm'
 import { Repository } from 'typeorm'
@@ -16,7 +13,7 @@ export class UsersService {
   constructor(
     @InjectRepository(User)
     private readonly userRepository: Repository<User>,
-  ) { }
+  ) {}
 
   create(createUserInput: CreateUserInput) {
     return this.userRepository.save(createUserInput)
@@ -41,8 +38,7 @@ export class UsersService {
     update.id = new ObjectId(updateUserInput.id)
     update.uid = updateUserInput.uid
     update.observations = updateUserInput.observations
-    //@ts-ignore
-    update.observationsCount = updateUserInput.observationsCount
+    update.observationCount = updateUserInput.observationCount
     return this.userRepository.save(update)
   }
 
@@ -60,8 +56,7 @@ export class UsersService {
     u.observations = u.observations
       ? [...observations, ...u.observations]
       : [...observations]
-    //@ts-ignore
-    u.observationsCount = u.observationsCount + observations.length
+    u.observationCount = u.observationCount + observations.length
 
     await this.userRepository.save(u)
   }
