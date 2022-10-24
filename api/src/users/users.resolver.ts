@@ -8,10 +8,9 @@ import { UseGuards } from '@nestjs/common'
 import { FirebaseGuard } from 'src/auth/guards/firebase.guard'
 import { RolesGuard } from 'src/auth/guards/role.guard'
 
-
 @Resolver(() => User)
 export class UsersResolver {
-  constructor(private readonly usersService: UsersService) { }
+  constructor(private readonly usersService: UsersService) {}
 
   @Mutation(() => User)
   createUser(@Args('createUserInput') createUserInput: CreateUserInput) {
@@ -19,7 +18,7 @@ export class UsersResolver {
   }
 
   @UseGuards(FirebaseGuard, RolesGuard(['admin']))
-  @Query(() => [User], { name: 'users' },)
+  @Query(() => [User], { name: 'users' })
   findAll() {
     return this.usersService.findAll()
   }

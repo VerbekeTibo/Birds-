@@ -12,5 +12,5 @@ export class UpdateUserInput extends PartialType(CreateUserInput) {
   observations: Observation[]
 
   @Field(() => Int)
-  observationsCount: number
+  observationCount: number
 }
