@@ -30,10 +30,7 @@
             Observations
           </h2>
           <p>
-            This bird has been spotted
-            {{ result.bird.observations }} time{{
-              result.bird.observations === 1 ? '' : 's'
-            }}.
+            {{ $tc('birds.description.spotted', result.bird.observations) }}
           </p>
         </div>
       </div>
@@ -45,33 +42,26 @@
 import { ref, Ref, watch } from 'vue-demi'
 import { useRoute } from 'vue-router'
 import { useQuery } from '@vue/apollo-composable'
-
 import RouteHolder from '../../components/holders/RouteHolder.vue'
 import Bird from '../../interfaces/interface.bird'
 import { BIRD_BY_ID } from '../../graphql/query.bird'
-
 export default {
   components: {
     RouteHolder,
   },
-
   setup() {
     const { params } = useRoute()
-
     const { result, loading, error } = useQuery<{ bird: Bird }>(BIRD_BY_ID, {
       id: params.id,
     })
-
     const birdName: Ref<string> = ref(
       // TODO: weird thing here...
       // @ts-ignore
       result && result.bird ? result.bird.name : '...',
     )
-
     watch(result, (result) => {
       if (result) birdName.value = result.bird.name
     })
-
     return {
       result,
       loading,

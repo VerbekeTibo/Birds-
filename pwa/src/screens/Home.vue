@@ -1,5 +1,8 @@
 <template>
   <route-holder title="Home">
+    <div>
+      
+    </div>
     <div class="mb-6">
       <h2 class="font-theme mb-3 text-2xl font-medium tracking-wide">
         Random birds
