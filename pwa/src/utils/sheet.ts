@@ -1,3 +1,5 @@
+
+
 import fs, { promises as fsPromises } from 'fs';
 import path from 'path';
 import process from 'process';
@@ -12,8 +14,8 @@ const SCOPES = ['https://www.googleapis.com/auth/spreadsheets.readonly'];
 // The file token.json stores the user's access and refresh tokens, and is
 // created automatically when the authorization flow completes for the first
 // time.
-const TOKEN_PATH = path.join(process.cwd(), '/src/utils/token.json');
-const CREDENTIALS_PATH = path.join(process.cwd(), '/src/utils/client_secret_157922284718-tiou7toq9b3dbe9vu3nq8vn59dnb0o41.apps.googleusercontent.com.json');
+const TOKEN_PATH = path.join(process.cwd(), './src/utils/token.json');
+const CREDENTIALS_PATH = path.join(process.cwd(), './src/utils/client_secret_157922284718-tiou7toq9b3dbe9vu3nq8vn59dnb0o41.apps.googleusercontent.com.json');
 
 /**
  * Reads previously authorized credentials from the save file.

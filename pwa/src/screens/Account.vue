@@ -19,7 +19,7 @@
 
       <div class="span-2">
         <h2 class="font-theme mb-3 text-2xl font-medium tracking-wide">
-          Realtime
+          {{$t('account.realtime')}}
         </h2>
         <div class="flex items-center gap-3">
           <input id="server" type="checkbox" v-model="connectedToServer" />
