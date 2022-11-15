@@ -1,4 +1,4 @@
-
+//@ts-nocheck
 
 import fs, { promises as fsPromises } from 'fs';
 import path from 'path';
