@@ -1,5 +1,6 @@
 /// <reference types="cypress" />
 
+import {Auth, connectAuthEmulator, signInWithEmailAndPassword, } from 'firebase/auth'
 describe('go to register', () => {
   it('should find register', () => {
     cy.visit('http://localhost:5173/auth/register')
