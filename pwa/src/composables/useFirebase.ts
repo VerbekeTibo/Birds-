@@ -4,6 +4,7 @@ import {
   Auth,
   setPersistence,
   browserLocalPersistence,
+  connectAuthEmulator,
 } from 'firebase/auth'
 
 export default () => {
@@ -20,6 +21,20 @@ export default () => {
 
   const auth: Auth = getAuth()
   setPersistence(auth, browserLocalPersistence)
+
+  //@ts-ignore
+  if (window.Cypress) {
+    //@ts-ignore
+    async function setupEmulators(auth) {
+      const authUrl = 'http://localhost:9099'
+      await fetch(authUrl)
+      connectAuthEmulator(auth, 'http://localhost:9099', { disableWarnings: true })
+      // why? to make sure that emulator are loaded
+    }
+    
+
+    setupEmulators(auth)
+  }
 
   return {
     app,

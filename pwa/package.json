@@ -8,7 +8,8 @@
     "build": "vue-tsc --noEmit && vite build",
     "preview": "vite preview",
     "pwa": "vue-tsc --noEmit && vite build && npx serve dist",
-    "test:e2e": "start vite && npx cypress open",
+    "firebase:emulate":"npx firebase-tools emulators:start",
+    "test:e2e": "start vite && start npm run firebase:emulate && npx cypress open",
     "test:unit": "vitest --coverage"
   },
   "dependencies": {
