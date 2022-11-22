@@ -14,7 +14,7 @@
         <h2 class="font-theme mb-3 text-2xl font-medium tracking-wide">
           Stats
         </h2>
-        <p>Birds spotted: {{ customUser?.observationCount }}</p>
+        <p>Birds spotted: {{ customUser?.observationsCount }}</p>
       </div>
 
       <div class="span-2">
@@ -48,7 +48,7 @@
       <h2 class="font-theme mb-3 text-2xl font-medium tracking-wide">
         Recent observations
       </h2>
-      <observations-table :observations="customUser.observations"  />
+      <observations-table :observations="customUser.observations" />
     </div>
   </route-holder>
 </template>
@@ -96,7 +96,9 @@ export default {
     }
 
     const getToken = async () => {
-      // console.log(await user.value?.getIdToken())
+      console.log(
+        `{ "authorization": "Bearer ${await user.value?.getIdToken()}" }`,
+      )
     }
 
     getToken()

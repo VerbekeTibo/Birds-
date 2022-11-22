@@ -38,7 +38,7 @@ export class UsersService {
     update.id = new ObjectId(updateUserInput.id)
     update.uid = updateUserInput.uid
     update.observations = updateUserInput.observations
-    update.observationCount = updateUserInput.observationCount
+    update.observationsCount = updateUserInput.observationsCount
     return this.userRepository.save(update)
   }
 
@@ -56,7 +56,7 @@ export class UsersService {
     u.observations = u.observations
       ? [...observations, ...u.observations]
       : [...observations]
-    u.observationCount = u.observationCount + observations.length
+    u.observationsCount = u.observationsCount + observations.length
 
     await this.userRepository.save(u)
   }

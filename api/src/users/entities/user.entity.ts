@@ -32,7 +32,7 @@ export class User {
 
   @Field(() => Int)
   @Column()
-  observationCount?: number
+  observationsCount?: number
 
   @Field({ nullable: true })
   @CreateDateColumn({ type: 'timestamp', nullable: true })

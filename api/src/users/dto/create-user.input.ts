@@ -14,5 +14,5 @@ export class CreateUserInput {
   observations?: Observation[]
 
   @Field(() => Int, { defaultValue: 0 })
-  observationCount?: number
+  observationsCount?: number
 }

@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="@dark:text-neutral-800">
     <form @submit.prevent="submitForm">
       <header>
         <h2 class="mb-6 text-3xl">Register</h2>
@@ -106,6 +106,7 @@ import { Loader2, X } from 'lucide-vue-next'
 
 import useAuthentication from '../../composables/useAuthentication'
 import { useRouter } from 'vue-router'
+import useCustomUser from '../../composables/useCustomUser'
 
 export default defineComponent({
   components: {
@@ -115,6 +116,7 @@ export default defineComponent({
 
   setup() {
     const { register } = useAuthentication()
+    const { createCustomUser } = useCustomUser()
     const { replace } = useRouter()
 
     const errorMessage: Ref<string> = ref('')
@@ -139,7 +141,9 @@ export default defineComponent({
       }
 
       register(userInput.name, userInput.email, userInput.password)
-        .then((u) => {
+        .then(async (u) => {
+          if (u.value) await createCustomUser()
+
           return replace('/')
         })
         .catch((error) => {

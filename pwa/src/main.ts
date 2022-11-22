@@ -9,9 +9,11 @@ import App from './App.vue'
 import router from './bootstrap/router'
 import useAuthentication from './composables/useAuthentication'
 import usei18n from './composables/usei18n'
+import useCustomUser from './composables/useCustomUser'
 
 //COMPOSABLES
-const { restoreUser } = useAuthentication()
+const { user, restoreUser } = useAuthentication()
+const { customUser, loadCustomUser } = useCustomUser()
 const { i18n, loadLocale } = usei18n()
 
 //APP INSTANCE
@@ -23,6 +25,8 @@ app.use(i18n)
 
   ; (async function () {
     await restoreUser()
+    if (user.value) await loadCustomUser(user.value?.uid)
+
 
     app.use(router)
     app.mount('#app')

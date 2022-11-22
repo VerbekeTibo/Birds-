@@ -6,7 +6,7 @@ export const GET_USER_BY_UID = gql`
       id
       uid
       observations {
-        
+        id
         name
         location {
           id
@@ -22,7 +22,7 @@ export const GET_USER_BY_UID = gql`
         updatedAt
         createdAt
       }
-      observationCount
+      observationsCount
       createdAt
       updatedAt
     }

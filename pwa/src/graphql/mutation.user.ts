@@ -7,12 +7,12 @@ export const CREATE_USER = gql`
       uid
       observations {
         id
-        title
+        name
         description
         createdAt
         updatedAt
       }
-      observationCount
+      observationsCount
       createdAt
       updatedAt
     }

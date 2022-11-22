@@ -28,6 +28,7 @@ export default {
 
   setup() {
     const { result, loading, error } = useQuery(OBSERVATIONS)
+    console.log(result.value)
 
     return {
       result,

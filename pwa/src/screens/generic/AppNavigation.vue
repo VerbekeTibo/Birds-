@@ -1,56 +1,89 @@
 <template>
-  <div class="mr-8 flex w-full justify-end gap-12 font-bold">
-    <p class="hover:text-neutral-600">
-      <router-link class="" to="/">
+  <ul
+    class="grid w-full grid-cols-4 items-center text-center text-xs font-medium sm:w-auto sm:space-x-3 sm:text-left sm:text-sm"
+  >
+    <li>
+      <router-link
+        exact-active-class="opacity-40"
+        class="inline-block rounded-md px-3 py-6 outline-none focus-visible:ring-2"
+        to="/"
+      >
         <Home class="mx-auto mb-2 h-5 sm:hidden" />
         {{ $t('navigation.home') }}
       </router-link>
-    </p>
-    <p class="hover:text-neutral-600">
-      <router-link active-class="opacity-40" to="/birds">
+    </li>
+
+    <li>
+      <router-link
+        active-class="opacity-40"
+        class="inline-block rounded-md px-3 py-6 outline-none focus-visible:ring-2"
+        to="/birds"
+      >
         <Feather class="mx-auto mb-2 h-5 sm:hidden" />
         {{ $t('navigation.birds') }}
       </router-link>
-    </p>
-    <p class="hover:text-neutral-600">
-      <router-link active-class="opacity-40" to="/log">
-        <Scroll class="mx-auto mb-2 h-5 sm:hidden" />
-        Logs
-      </router-link>
-    </p>
-    <p class="hover:text-neutral-600">
-      <router-link active-class="opacity-40" to="/observations">
+    </li>
+
+    <li>
+      <router-link
+        active-class="opacity-40"
+        class="inline-block rounded-md px-3 py-6 outline-none focus-visible:ring-2"
+        to="/observations"
+      >
         <Clipboard class="mx-auto mb-2 h-5 sm:hidden" />
         {{ $t('navigation.observations') }}
       </router-link>
-    </p>
-    <p class="hover:text-neutral-600"
-    data-cy="user-name">
+    </li>
+
+    <li>
       <router-link
         active-class="opacity-40"
-        v-if="user"
+        class="inline-block rounded-md px-3 py-6 outline-none focus-visible:ring-2 sm:hidden"
         to="/account"
-        data-cy="user-name"
       >
         <User class="mx-auto mb-2 h-5 sm:hidden" />
-        {{ user?.displayName }}
+        {{ $t('navigation.user') }}
       </router-link>
-      <router-link active-class="opacity-40" to="/auth/login" v-else>
-        <LogIn class="mx-auto mb-2 h-5 sm:hidden" />Log in</router-link
+    </li>
+
+    <li class="hidden pl-6 sm:block">
+      <router-link
+        class="inline-block rounded-md px-3 py-6 outline-none focus-visible:ring-2"
+        rounded-md
+        ring-2
+        to="/account"
+        v-if="user"
+        data-cy="user-name"
       >
-    </p>
-  </div>
+        {{ user.displayName }}
+      </router-link>
+      <router-link
+        class="inline-block rounded-md px-3 py-6 outline-none focus-visible:ring-2"
+        rounded-md
+        ring-2
+        to="/auth/login"
+        v-else
+      >
+        Login
+      </router-link>
+    </li>
+  </ul>
 </template>
 
 <script lang="ts">
+import { Home, Feather, User, Clipboard } from 'lucide-vue-next'
+
 import useAuthentication from '../../composables/useAuthentication'
-import { Home, Feather, Scroll, Clipboard, User, LogIn } from 'lucide-vue-next'
 
 export default {
-  components: { Home, Feather, Scroll, Clipboard, User, LogIn },
+  components: { Home, Feather, User, Clipboard },
+
   setup() {
     const { user } = useAuthentication()
-    return { user }
+
+    return {
+      user,
+    }
   },
 }
 </script>
